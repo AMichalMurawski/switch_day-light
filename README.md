@@ -1,0 +1,1 @@
+Switch bar dark-light
