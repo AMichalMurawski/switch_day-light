@@ -109,6 +109,10 @@ export const SwitchDayLight = ({ scale }) => {
           style={{
             position: 'absolute',
             left: pxScale(-125),
+            transform:
+              switched.mode === 'light'
+                ? `translateX(0)`
+                : `translateX(${pxScale(215)})`,
             width: pxScale(400),
             height: pxScale(400),
             borderRadius: pxScale(200),
@@ -120,6 +124,7 @@ export const SwitchDayLight = ({ scale }) => {
             rgba(255, 255, 255, 0.05) 58%,
             rgba(255, 255, 255, 0.05) 62%,
             rgba(255, 255, 255, 0) 74%)`,
+            transition: 'transform 300ms',
             zIndex: 20,
           }}
         >
