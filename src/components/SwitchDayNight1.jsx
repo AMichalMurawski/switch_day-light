@@ -134,19 +134,29 @@ export const SwitchDayNight1 = ({
               : `translateX(${pxScale(215)})`,
           width: pxScale(400),
           height: pxScale(400),
-          borderRadius: pxScale(200),
-          background: `radial-gradient(
-              rgba(255, 255, 255, 0.25), 
-              rgba(255, 255, 255, 0.25) 30%,
-              rgba(255, 255, 255, 0.15) 35%,
-              rgba(255, 255, 255, 0.15) 48%,
-              rgba(255, 255, 255, 0.06) 53%,
-              rgba(255, 255, 255, 0.06) 65%,
-              rgba(255, 255, 255, 0) 70%)`,
+          borderRadius: '50%',
           transition: `transform ${transitionDurationTiming}`,
           zIndex: 20,
         }}
       >
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            borderRadius: '50%',
+            background: `radial-gradient(
+              rgba(255, 255, 255, 0.35), 
+              rgba(255, 255, 255, 0.35) 30%,
+              rgba(255, 255, 255, 0.20) 35%,
+              rgba(255, 255, 255, 0.20) 48%,
+              rgba(255, 255, 255, 0.12) 53%,
+              rgba(255, 255, 255, 0.12) 65%,
+              rgba(255, 255, 255, 0) 70%)`,
+            opacity: switched.mode === modeType.light ? 1 : 0.4,
+            transition: `opacity ${transitionDurationTiming}`,
+            zIndex: 10,
+          }}
+        />
         <div
           style={{
             position: 'absolute',
