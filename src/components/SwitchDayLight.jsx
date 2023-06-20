@@ -5,7 +5,7 @@ const cloudData1 = [[50, 155, 10], [110, 155, 14], [175, 150, 20], [225, 155, 15
 const cloudData2 = [[45, 145, 10], [105, 140, 14], [170, 130, 21], [210, 125, 15], [260, 105, 18], [305, 80, 12], [380, 50, 18]]
 const moonData1 = [[58, 30, 12], [40, 70, 20], [88, 83, 12]]
 const moonData2 = [[58.7, 29.3, 12.5], [40.7, 69.3, 20.5], [88.7, 82.3, 12.5]]
-const starData = [[40,40,1]]
+const starData = [[38,38,2],[70,20,4],[75,60,2],[40,120,1],[50,110,1],[80,125,1],[160,35,1],[150,60,1],[170,110,3],[205,90,1],[210,40,4]]
 
 const SvgStar = ({scale=1, color}) => {
   return <svg viewbox={`0 0 ${10*scale} ${10*scale}`} width={10*scale} height={10*scale} >  
@@ -73,7 +73,7 @@ export const SwitchDayLight = ({ scale }) => {
             boxShadow: `
             ${pxScale(-2)} ${pxScale(-4)} ${pxScale(4)} rgb(150, 150, 150) inset,
             ${pxScale(2)} ${pxScale(4)} ${pxScale(4)} rgb(250, 250, 250) inset,
-            0 ${pxScale(4)} ${pxScale(7)} rgb(88, 88, 88)`,
+            ${pxScale(5)} ${pxScale(5)} ${pxScale(9)} rgb(30, 30, 30)`,
             zIndex: 10,
           }}
         />
@@ -105,12 +105,11 @@ export const SwitchDayLight = ({ scale }) => {
             width: pxScale(120),
             height: pxScale(120),
             borderRadius: pxScale(60),
-            backgroundColor: "rgb(200, 200, 200)",
             background:`${gradient(moonData1,"rgb(155, 155, 155)")}, ${gradient(moonData2,"rgb(130, 130, 130)")}, radial-gradient(circle at ${pxScale(60)} ${pxScale(60)}, rgb(200,200,200) 100%, transparent 100%)`,
             boxShadow: `
             ${pxScale(-2)} ${pxScale(-4)} ${pxScale(4)} rgb(150, 150, 150) inset,
             ${pxScale(2)} ${pxScale(4)} ${pxScale(4)} rgb(250, 250, 250) inset,
-            0 ${pxScale(5)} ${pxScale(9)} rgb(150, 150, 150)`,
+            ${pxScale(5)} ${pxScale(5)} ${pxScale(9)} rgb(30, 30, 30)`,
             zIndex: 10,
           }}
         />
@@ -135,15 +134,22 @@ export const SwitchDayLight = ({ scale }) => {
           background: gradient(cloudData2, 'rgb(200,200,200)'),
           zIndex: 12
       }}/> */}
+      <div style={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        left: 0,
+        top: 0,
+        zIndex: 15
+      }}>
       {starData.map(el =>
         <div
           style={{
             position: "absolute",
             left: pxScale(el[0]),
             top: pxScale(el[1]),
-            zIndex: 30,
           }} ><SvgStar scale={el[2]} color="rgb(250,250,250)" /></div>)}
-      
+      </div>
     </div>
   );
 };
