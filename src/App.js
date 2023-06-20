@@ -1,16 +1,16 @@
-import "./App.css";
-import { SwitchDayLight } from "./components/SwitchDayLight";
+import './App.css';
+import { SwitchDayLight } from './components/SwitchDayLight';
 
 function App() {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor:"lightgray"
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'lightgray',
       }}
     >
       <SwitchDayLight scale="3" />
