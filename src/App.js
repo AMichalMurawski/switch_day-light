@@ -18,18 +18,7 @@ function App() {
     setSwitches(previous => ({ ...previous, switch2: mode }));
   };
 
-  const switchesMap = [
-    <SwitchDayNight1
-      scale={switches.scale}
-      mode={switches.switch1}
-      onClick={handleClick1}
-    />,
-    <SwitchDayNight2
-      scale={switches.scale}
-      mode={switches.switch2}
-      onClick={handleClick2}
-    />,
-  ];
+  const switchesMap = ['switch1', 'switch2'];
 
   return (
     <div
