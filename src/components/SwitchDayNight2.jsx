@@ -130,9 +130,7 @@ export const SwitchDayNight2 = ({
           position: 'absolute',
           left: pxScale(-125),
           transform:
-            switched.mode === 'light'
-              ? `translateX(0)`
-              : `translateX(${pxScale(215)})`,
+            switched.mode === 'light' ? `translateX(0)` : `translateX(55%)`,
           width: pxScale(400),
           height: pxScale(400),
           borderRadius: '50%',
@@ -146,14 +144,14 @@ export const SwitchDayNight2 = ({
             height: '100%',
             borderRadius: '50%',
             background: `radial-gradient(
-              rgba(255, 255, 255, 0.35), 
-              rgba(255, 255, 255, 0.35) 30%,
-              rgba(255, 255, 255, 0.20) 35%,
-              rgba(255, 255, 255, 0.20) 48%,
-              rgba(255, 255, 255, 0.12) 53%,
-              rgba(255, 255, 255, 0.12) 65%,
+              rgba(255, 255, 255, 0.40), 
+              rgba(255, 255, 255, 0.40) 30%,
+              rgba(255, 255, 255, 0.25) 35%,
+              rgba(255, 255, 255, 0.25) 48%,
+              rgba(255, 255, 255, 0.15) 53%,
+              rgba(255, 255, 255, 0.15) 65%,
               rgba(255, 255, 255, 0) 70%)`,
-            opacity: switched.mode === modeType.light ? 1 : 0.4,
+            opacity: switched.mode === modeType.light ? 1 : 0.6,
             transition: `opacity ${transitionDurationTiming}`,
             zIndex: 10,
           }}
@@ -233,8 +231,8 @@ export const SwitchDayNight2 = ({
           opacity: switched.mode === modeType.light ? 1 : 0,
           transition:
             switched.mode === modeType.light
-              ? `opacity 300ms 200ms ease-out`
-              : `opacity 300ms ease-out`,
+              ? `opacity ${transitionDurationTiming}`
+              : `opacity ${transitionDurationTiming}`,
           zIndex: 15,
         }}
       />
@@ -249,8 +247,8 @@ export const SwitchDayNight2 = ({
           opacity: switched.mode === modeType.light ? 1 : 0,
           transition:
             switched.mode === modeType.light
-              ? `opacity 300ms 200ms ease-out`
-              : `opacity 300ms ease-out`,
+              ? `opacity ${transitionDurationTiming}`
+              : `opacity ${transitionDurationTiming}`,
           zIndex: 12,
         }}
       />
