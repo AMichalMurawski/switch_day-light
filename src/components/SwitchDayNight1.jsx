@@ -11,6 +11,7 @@ import {
   modeType,
   transitionDurationTiming,
   pxScale,
+  pxScale2,
   gradient,
 } from './data/dimData';
 
@@ -19,15 +20,70 @@ export const SwitchDayNight1 = ({
   mode = modeType.light,
   onClick,
 }) => {
-  const [switched, setSwitched] = useState({ mode: mode, move: 0 });
+  const [switched, setSwitched] = useState({
+    mode: mode,
+    movePos: mode === modeType.light ? 0 : pxScale2(scale, 224),
+    xPos: 0,
+    move: 0,
+    isMoving: false,
+  });
 
   const handleClick = e => {
+    let next = {};
     if (switched.mode === 'light') {
       mode = modeType.dark;
+      next = {
+        mode,
+        movePos: pxScale2(scale, 224),
+        move: 1,
+      };
     } else {
       mode = modeType.light;
+      next = {
+        mode,
+        movePos: 0,
+        move: 0,
+      };
     }
-    setSwitched({ mode: mode });
+    setSwitched(prev => ({ ...prev, ...next }));
+    onClick(mode);
+  };
+
+  const handleDragStart = e => {
+    setSwitched(prev => ({ ...prev, xPos: e.clientX, isMoving: true }));
+  };
+
+  const handleDrag = e => {
+    let move =
+      (switched.movePos + (e.clientX - switched.xPos)) / pxScale2(scale, 224);
+    if (move < 0) move = 0;
+    if (move > 1) move = 1;
+    setSwitched(prev => ({
+      ...prev,
+      move: move,
+    }));
+  };
+
+  const handleDragEnd = e => {
+    let next = {};
+    let move =
+      (switched.movePos + (e.clientX - switched.xPos)) / pxScale2(scale, 224);
+    if (move > 0.5) {
+      mode = modeType.dark;
+      next = {
+        mode,
+        movePos: pxScale2(scale, 224),
+        move: 1,
+      };
+    } else {
+      mode = modeType.light;
+      next = {
+        mode,
+        movePos: 0,
+        move: 0,
+      };
+    }
+    setSwitched(prev => ({ ...prev, ...next, isMoving: false }));
     onClick(mode);
   };
 
@@ -40,7 +96,10 @@ export const SwitchDayNight1 = ({
         minHeight: pxScale(scale, 145),
         height: pxScale(scale, 145),
         borderRadius: pxScale(scale, 72.5),
-        backgroundColor: switched.mode === 'light' ? '#3367c1' : '#002',
+        backgroundColor: `rgb(
+          ${51 - switched.move * 55}, 
+          ${103 - switched.move * 103}, 
+          ${193 - switched.move * 159})`,
         boxShadow: `
             0 ${pxScale(scale, 10)} ${pxScale(scale, 15)} rgb(0, 0, 0) inset,
             0 ${pxScale(scale, 5)} ${pxScale(scale, 3)} rgb(250, 250, 250),
@@ -48,7 +107,10 @@ export const SwitchDayNight1 = ({
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        transition: `background-color ${transitionDurationTiming}`,
+        transition: !switched.isMoving
+          ? `background-color ${transitionDurationTiming}`
+          : null,
+        cursor: 'pointer',
       }}
       onClick={handleClick}
     >
@@ -57,14 +119,18 @@ export const SwitchDayNight1 = ({
         style={{
           position: 'absolute',
           left: pxScale(scale, -125),
-          transform:
-            switched.mode === 'light' ? `translateX(0)` : `translateX(55%)`,
+          transform: `translateX(${switched.move * 55}%)`,
           width: pxScale(scale, 400),
           height: pxScale(scale, 400),
           borderRadius: '50%',
-          transition: `transform ${transitionDurationTiming}`,
+          transition: !switched.isMoving
+            ? `transform ${transitionDurationTiming}`
+            : null,
           zIndex: 20,
         }}
+        onDragStart={handleDragStart}
+        onDrag={handleDrag}
+        onDragEnd={handleDragEnd}
       >
         <div
           style={{
@@ -79,8 +145,10 @@ export const SwitchDayNight1 = ({
               rgba(255, 255, 255, 0.15) 53%,
               rgba(255, 255, 255, 0.15) 65%,
               rgba(255, 255, 255, 0) 70%)`,
-            opacity: switched.mode === modeType.light ? 1 : 0.6,
-            transition: `opacity ${transitionDurationTiming}`,
+            opacity: 1 - switched.move * 0.4,
+            transition: !switched.isMoving
+              ? `opacity ${transitionDurationTiming}`
+              : null,
             zIndex: 10,
           }}
         />
@@ -127,27 +195,23 @@ export const SwitchDayNight1 = ({
               position: 'absolute',
               left: '50%',
               top: '50%',
-              transform:
-                switched.mode === 'light'
-                  ? 'translate(-50%, -50%)'
-                  : 'translate(50%, -50%)',
+              transform: `translate(${-50 + switched.move * 100}%, -50%)`,
               width: pxScale(scale, 120),
               height: pxScale(scale, 120),
               borderRadius: pxScale(scale, 60),
-              backgroundColor:
-                switched.mode === modeType.light
-                  ? 'rgb(229, 195, 41)'
-                  : 'rgb(200, 200, 200)',
-              boxShadow:
-                switched.mode === modeType.light
-                  ? `
-                    ${pxScale(scale, -3)} ${pxScale(scale, -4)} 
-                      ${pxScale(scale, 4)} rgb(150, 150, 150) inset,
-                    ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
-                      ${pxScale(scale, 4)} rgb(250, 250, 250) inset`
-                  : null,
-              transition: `transform ${transitionDurationTiming}, 
-                  background-color ${transitionDurationTiming}`,
+              backgroundColor: `rgb(
+                ${229 - switched.move * 229}, 
+                ${195 - switched.move * 195}, 
+                ${41 - switched.move * 49})`,
+              boxShadow: `
+                ${pxScale(scale, -3)} ${pxScale(scale, -4)} 
+                  ${pxScale(scale, 4)} rgb(150, 150, 150) inset,
+                ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
+                  ${pxScale(scale, 4)} rgb(250, 250, 250) inset`,
+              transition: !switched.isMoving
+                ? `transform ${transitionDurationTiming}, 
+                  background-color ${transitionDurationTiming}`
+                : null,
             }}
           />
         </div>
@@ -157,26 +221,30 @@ export const SwitchDayNight1 = ({
       <div
         style={{
           position: 'absolute',
-          left: switched.mode === modeType.light ? '0' : '10%',
-          top: switched.mode === modeType.light ? '0' : '100%',
+          left: `${switched.move * 10}%`,
+          top: `${switched.move * 100}%`,
           width: pxScale(scale, 369),
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData1, 'rgb(255,255,255)'),
-          transition: `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`,
+          transition: !switched.isMoving
+            ? `top ${transitionDurationTiming}, 
+              left ${transitionDurationTiming}`
+            : null,
           zIndex: 15,
         }}
       />
       <div
         style={{
           position: 'absolute',
-          left: switched.mode === modeType.light ? '0' : '10%',
-          top: switched.mode === modeType.light ? '0' : '100%',
+          left: `${switched.move * 10}%`,
+          top: `${switched.move * 100}%`,
           width: pxScale(scale, 369),
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData2, 'rgb(200,200,200)'),
-          transition: `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`,
+          transition: !switched.isMoving
+            ? `top ${transitionDurationTiming}, 
+              left ${transitionDurationTiming}`
+            : null,
           zIndex: 12,
         }}
       />
@@ -187,10 +255,12 @@ export const SwitchDayNight1 = ({
           position: 'absolute',
           width: '100%',
           height: '100%',
-          left: switched.mode === modeType.dark ? 0 : '-10%',
-          top: switched.mode === modeType.dark ? 0 : '-100%',
-          transition: `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`,
+          left: `${-10 + switched.move * 10}%`,
+          top: `${-100 + switched.move * 100}%`,
+          transition: !switched.isMoving
+            ? `top ${transitionDurationTiming}, 
+              left ${transitionDurationTiming}`
+            : null,
           zIndex: 15,
         }}
       >

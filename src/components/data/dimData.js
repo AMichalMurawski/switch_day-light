@@ -9,6 +9,10 @@ export const pxScale = (scale, px) => {
   return `${(scale * px) / 4}px`;
 };
 
+export const pxScale2 = (scale, px) => {
+  return (scale * px) / 4;
+};
+
 export const gradient = (scale, data, color) => {
   const dataGradient = data.map(
     el =>
