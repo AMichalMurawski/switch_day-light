@@ -72,6 +72,9 @@ function App() {
               style={{
                 fontSize: `${switches.scale * 7}px`,
                 lineHeight: '1',
+                color:
+                  switches[`switch${i + 1}`] === 'light' ? 'black' : 'white',
+                transition: 'color 400ms ease-out',
               }}
             >
               Switch {i + 1} - {switches[`switch${i + 1}`]} mode

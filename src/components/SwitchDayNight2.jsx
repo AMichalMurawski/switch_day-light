@@ -154,10 +154,7 @@ export const SwitchDayNight2 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData1, 'rgb(255,255,255)'),
           opacity: switched.mode === modeType.light ? 1 : 0,
-          transition:
-            switched.mode === modeType.light
-              ? `opacity ${transitionDurationTiming}`
-              : `opacity ${transitionDurationTiming}`,
+          transition: `opacity ${transitionDurationTiming}`,
           zIndex: 15,
         }}
       />
@@ -170,10 +167,7 @@ export const SwitchDayNight2 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData2, 'rgb(200,200,200)'),
           opacity: switched.mode === modeType.light ? 1 : 0,
-          transition:
-            switched.mode === modeType.light
-              ? `opacity ${transitionDurationTiming}`
-              : `opacity ${transitionDurationTiming}`,
+          transition: `opacity ${transitionDurationTiming}`,
           zIndex: 12,
         }}
       />
