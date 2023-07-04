@@ -3,7 +3,11 @@ export const modeType = {
   dark: 'dark',
 };
 
-export const transitionDurationTiming = '500ms ease-out';
+export const transitionFunction = (duration, properties) => {
+  if (typeof properties === 'string')
+    return `${properties} ${duration}ms ease-out`;
+  return properties.map(prop => `${prop} ${duration}ms ease-out`);
+};
 
 export const pxScale = (scale, px) => {
   return `${(scale * px) / 4}px`;

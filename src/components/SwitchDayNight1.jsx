@@ -9,7 +9,7 @@ import {
 import { SvgStar } from './data/SvgStar';
 import {
   modeType,
-  transitionDurationTiming,
+  transitionFunction,
   pxScale,
   pxScale2,
   gradient,
@@ -18,6 +18,7 @@ import {
 export const SwitchDayNight1 = ({
   scale = 1,
   mode = modeType.light,
+  transitionDuration = 5000,
   onClick,
 }) => {
   const [switched, setSwitched] = useState({
@@ -118,7 +119,7 @@ export const SwitchDayNight1 = ({
         alignItems: 'center',
         overflow: 'hidden',
         transition: !switched.isMoving
-          ? `background-color ${transitionDurationTiming}`
+          ? transitionFunction(transitionDuration, 'background-color')
           : null,
         cursor: 'pointer',
       }}
@@ -134,7 +135,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 400),
           borderRadius: '50%',
           transition: !switched.isMoving
-            ? `transform ${transitionDurationTiming}`
+            ? transitionFunction(transitionDuration, 'transform')
             : null,
           zIndex: 20,
         }}
@@ -160,7 +161,7 @@ export const SwitchDayNight1 = ({
               rgba(255, 255, 255, 0) 70%)`,
             opacity: 1 - switched.move * 0.4,
             transition: !switched.isMoving
-              ? `opacity ${transitionDurationTiming}`
+              ? transitionFunction(transitionDuration, 'opacity')
               : null,
             zIndex: 10,
           }}
@@ -222,8 +223,10 @@ export const SwitchDayNight1 = ({
                 ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
                   ${pxScale(scale, 4)} rgb(250, 250, 250) inset`,
               transition: !switched.isMoving
-                ? `transform ${transitionDurationTiming}, 
-                  background-color ${transitionDurationTiming}`
+                ? transitionFunction(transitionDuration, [
+                    'transform',
+                    'background-color',
+                  ])
                 : null,
             }}
           />
@@ -240,8 +243,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData1, 'rgb(255,255,255)'),
           transition: !switched.isMoving
-            ? `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`
+            ? transitionFunction(transitionDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
@@ -255,8 +257,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData2, 'rgb(200,200,200)'),
           transition: !switched.isMoving
-            ? `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`
+            ? transitionFunction(transitionDuration, ['top', 'left'])
             : null,
           zIndex: 12,
         }}
@@ -271,8 +272,7 @@ export const SwitchDayNight1 = ({
           left: `${-10 + switched.move * 10}%`,
           top: `${-100 + switched.move * 100}%`,
           transition: !switched.isMoving
-            ? `top ${transitionDurationTiming}, 
-              left ${transitionDurationTiming}`
+            ? transitionFunction(transitionDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
