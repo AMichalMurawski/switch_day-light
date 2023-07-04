@@ -49,13 +49,20 @@ export const SwitchDayNight1 = ({
     onClick(mode);
   };
 
-  const handleDragStart = e => {
-    setSwitched(prev => ({ ...prev, xPos: e.clientX, isMoving: true }));
+  const handleDragStart = (e, screen) => {
+    let xPos = 0;
+    if (screen === 'drag') xPos = e.clientX;
+    if (screen === 'touch') xPos = e.changedTouches[0].screenX;
+    setSwitched(prev => ({ ...prev, xPos, isMoving: true }));
   };
 
-  const handleDrag = e => {
+  const handleDrag = (e, screen) => {
+    let xPos = null;
+    if (screen === 'drag') xPos = e.clientX;
+    if (screen === 'touch') xPos = e.changedTouches[0].screenX;
+    if (xPos === 0) return;
     let move =
-      (switched.movePos + (e.clientX - switched.xPos)) / pxScale2(scale, 224);
+      (switched.movePos + (xPos - switched.xPos)) / pxScale2(scale, 224);
     if (move < 0) move = 0;
     if (move > 1) move = 1;
     setSwitched(prev => ({
@@ -64,10 +71,13 @@ export const SwitchDayNight1 = ({
     }));
   };
 
-  const handleDragEnd = e => {
+  const handleDragEnd = (e, screen) => {
+    let xPos = 0;
+    if (screen === 'drag') xPos = e.clientX;
+    if (screen === 'touch') xPos = e.changedTouches[0].screenX;
     let next = {};
     let move =
-      (switched.movePos + (e.clientX - switched.xPos)) / pxScale2(scale, 224);
+      (switched.movePos + (xPos - switched.xPos)) / pxScale2(scale, 224);
     if (move > 0.5) {
       mode = modeType.dark;
       next = {
@@ -128,9 +138,12 @@ export const SwitchDayNight1 = ({
             : null,
           zIndex: 20,
         }}
-        onDragStart={handleDragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
+        onDragStart={e => handleDragStart(e, 'drag')}
+        onTouchStart={e => handleDragStart(e, 'touch')}
+        onDrag={e => handleDrag(e, 'drag')}
+        onTouchMove={e => handleDrag(e, 'touch')}
+        onDragEnd={e => handleDragEnd(e, 'drag')}
+        onTouchEnd={e => handleDragEnd(e, 'touch')}
       >
         <div
           style={{
