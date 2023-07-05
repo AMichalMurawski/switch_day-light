@@ -18,7 +18,7 @@ import {
 export const SwitchDayNight1 = ({
   scale = 1,
   mode = modeType.light,
-  transitionDuration = 5000,
+  transitionDuration = 500,
   onClick,
 }) => {
   const [switched, setSwitched] = useState({
@@ -26,6 +26,7 @@ export const SwitchDayNight1 = ({
     movePos: mode === modeType.light ? 0 : pxScale2(scale, 224),
     xPos: 0,
     move: 0,
+    moveDuration: transitionDuration,
     isMoving: false,
   });
 
@@ -37,6 +38,7 @@ export const SwitchDayNight1 = ({
         mode,
         movePos: pxScale2(scale, 224),
         move: 1,
+        moveDuration: transitionDuration,
       };
     } else {
       mode = modeType.light;
@@ -44,6 +46,7 @@ export const SwitchDayNight1 = ({
         mode,
         movePos: 0,
         move: 0,
+        moveDuration: transitionDuration,
       };
     }
     setSwitched(prev => ({ ...prev, ...next }));
@@ -85,6 +88,7 @@ export const SwitchDayNight1 = ({
         mode,
         movePos: pxScale2(scale, 224),
         move: 1,
+        moveDuration: (1 - move) * transitionDuration,
       };
     } else {
       mode = modeType.light;
@@ -92,6 +96,7 @@ export const SwitchDayNight1 = ({
         mode,
         movePos: 0,
         move: 0,
+        moveDuration: move * transitionDuration,
       };
     }
     setSwitched(prev => ({ ...prev, ...next, isMoving: false }));
@@ -119,7 +124,7 @@ export const SwitchDayNight1 = ({
         alignItems: 'center',
         overflow: 'hidden',
         transition: !switched.isMoving
-          ? transitionFunction(transitionDuration, 'background-color')
+          ? transitionFunction(switched.moveDuration, 'background-color')
           : null,
         cursor: 'pointer',
       }}
@@ -135,7 +140,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 400),
           borderRadius: '50%',
           transition: !switched.isMoving
-            ? transitionFunction(transitionDuration, 'transform')
+            ? transitionFunction(switched.moveDuration, 'transform')
             : null,
           zIndex: 20,
         }}
@@ -161,7 +166,7 @@ export const SwitchDayNight1 = ({
               rgba(255, 255, 255, 0) 70%)`,
             opacity: 1 - switched.move * 0.4,
             transition: !switched.isMoving
-              ? transitionFunction(transitionDuration, 'opacity')
+              ? transitionFunction(switched.moveDuration, 'opacity')
               : null,
             zIndex: 10,
           }}
@@ -223,7 +228,7 @@ export const SwitchDayNight1 = ({
                 ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
                   ${pxScale(scale, 4)} rgb(250, 250, 250) inset`,
               transition: !switched.isMoving
-                ? transitionFunction(transitionDuration, [
+                ? transitionFunction(switched.moveDuration, [
                     'transform',
                     'background-color',
                   ])
@@ -243,7 +248,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData1, 'rgb(255,255,255)'),
           transition: !switched.isMoving
-            ? transitionFunction(transitionDuration, ['top', 'left'])
+            ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
@@ -257,7 +262,7 @@ export const SwitchDayNight1 = ({
           height: pxScale(scale, 145),
           background: gradient(scale, cloudData2, 'rgb(200,200,200)'),
           transition: !switched.isMoving
-            ? transitionFunction(transitionDuration, ['top', 'left'])
+            ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
           zIndex: 12,
         }}
@@ -272,7 +277,7 @@ export const SwitchDayNight1 = ({
           left: `${-10 + switched.move * 10}%`,
           top: `${-100 + switched.move * 100}%`,
           transition: !switched.isMoving
-            ? transitionFunction(transitionDuration, ['top', 'left'])
+            ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
