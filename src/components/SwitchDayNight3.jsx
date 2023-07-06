@@ -2,12 +2,9 @@ import { useState } from 'react';
 import {
   cloudData1,
   cloudData2,
-  cloudData1b,
-  cloudData2b,
-  moonData1b,
-  moonData2b,
+  moonData1,
+  moonData2,
   starData,
-  starDatab,
 } from './data/imageData';
 import { SvgStar } from './data/SvgStar';
 import {
@@ -15,15 +12,11 @@ import {
   transitionFunction,
   pxScale,
   pxScale2,
-  pxScale3,
   gradient,
-  gradient2,
 } from './data/dimData';
 
-export const SwitchDayNight1 = ({
+export const SwitchDayNight3 = ({
   scale = 1,
-  height = 30,
-  width = 76,
   mode = modeType.light,
   transitionDuration = 500,
   onClick,
@@ -114,22 +107,19 @@ export const SwitchDayNight1 = ({
     <div
       style={{
         position: 'relative',
-        minWidth: pxScale3(1, width),
-        width: pxScale3(1, width),
-        minHeight: pxScale3(1, height),
-        height: pxScale3(1, height),
-        borderRadius: pxScale3(1 / 2, height),
+        minWidth: pxScale(scale, 369),
+        width: pxScale(scale, 369),
+        minHeight: pxScale(scale, 145),
+        height: pxScale(scale, 145),
+        borderRadius: pxScale(scale, 72.5),
         backgroundColor: `rgb(
           ${51 - switched.move * 55}, 
           ${103 - switched.move * 103}, 
           ${193 - switched.move * 159})`,
         boxShadow: `
-            0 ${pxScale3(1 / 15, height)} 
-              ${pxScale3(1 / 10, height)} rgb(0, 0, 0) inset,
-            0 ${pxScale3(1 / 30, height)} 
-              ${pxScale3(1 / 50, height)} rgb(250, 250, 250),
-            0 ${pxScale3(1 / 35, height)} 
-              ${pxScale3(1 / 50, height)} rgb(0, 0, 0)`,
+            0 ${pxScale(scale, 10)} ${pxScale(scale, 15)} rgb(0, 0, 0) inset,
+            0 ${pxScale(scale, 5)} ${pxScale(scale, 3)} rgb(250, 250, 250),
+            0 ${pxScale(scale, 4)} ${pxScale(scale, 3)} rgb(0, 0, 0)`,
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
@@ -144,10 +134,10 @@ export const SwitchDayNight1 = ({
       <div
         style={{
           position: 'absolute',
-          left: pxScale3(-0.86, height),
-          transform: `translateX(${switched.move * (width - height)}px)`,
-          width: pxScale3(2.75, height),
-          height: pxScale3(2.75, height),
+          left: pxScale(scale, -125),
+          transform: `translateX(${switched.move * 55}%)`,
+          width: pxScale(scale, 400),
+          height: pxScale(scale, 400),
           borderRadius: '50%',
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, 'transform')
@@ -168,8 +158,8 @@ export const SwitchDayNight1 = ({
             borderRadius: '50%',
             background: `radial-gradient(
               rgba(255, 255, 255, 0.40), 
-              rgba(255, 255, 255, 0.40) 32%,
-              rgba(255, 255, 255, 0.25) 36%,
+              rgba(255, 255, 255, 0.40) 30%,
+              rgba(255, 255, 255, 0.25) 35%,
               rgba(255, 255, 255, 0.25) 48%,
               rgba(255, 255, 255, 0.15) 53%,
               rgba(255, 255, 255, 0.15) 65%,
@@ -187,11 +177,11 @@ export const SwitchDayNight1 = ({
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
-            width: pxScale3(0.8, height),
-            height: pxScale3(0.8, height),
-            borderRadius: pxScale3(0.4, height),
-            boxShadow: `${pxScale3(1 / 45, height)} ${pxScale3(1 / 45, height)} 
-                ${pxScale3(1 / 30, height)} rgb(30, 30, 30)`,
+            width: pxScale(scale, 120),
+            height: pxScale(scale, 120),
+            borderRadius: pxScale(scale, 60),
+            boxShadow: `${pxScale(scale, 5)} ${pxScale(scale, 5)} 
+                ${pxScale(scale, 9)} rgb(30, 30, 30)`,
             overflow: 'hidden',
           }}
         >
@@ -202,20 +192,20 @@ export const SwitchDayNight1 = ({
               left: '50%',
               top: '50%',
               transform: 'translate(-50%, -50%)',
-              width: pxScale3(0.8, height),
-              height: pxScale3(0.8, height),
-              borderRadius: pxScale3(0.4, height),
+              width: pxScale(scale, 120),
+              height: pxScale(scale, 120),
+              borderRadius: pxScale(scale, 60),
               background: `
-                  ${gradient2(height, moonData1b, 'rgb(155, 155, 155)')}, 
-                  ${gradient2(height, moonData2b, 'rgb(130, 130, 130)')}, 
-                  radial-gradient( circle at
-                    ${pxScale3(1 / 5, height)} ${pxScale3(1 / 5, height)}, 
+                  ${gradient(scale, moonData1, 'rgb(155, 155, 155)')}, 
+                  ${gradient(scale, moonData2, 'rgb(130, 130, 130)')}, 
+                  radial-gradient(
+                    circle at ${pxScale(scale, 60)} ${pxScale(scale, 60)}, 
                     rgb(200,200,200) 100%, transparent 100%)`,
               boxShadow: `
-                ${pxScale3(-1 / 50, height)} ${pxScale3(-1 / 35, height)} 
-                  ${pxScale3(1 / 35, height)} rgb(150, 150, 150) inset,
-                ${pxScale3(1 / 50, height)} ${pxScale3(1 / 35, height)} 
-                  ${pxScale3(1 / 35, height)} rgb(250, 250, 250) inset`,
+                  ${pxScale(scale, -3)} ${pxScale(scale, -4)} 
+                    ${pxScale(scale, 4)} rgb(150, 150, 150) inset,
+                  ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
+                    ${pxScale(scale, 4)} rgb(250, 250, 250) inset`,
             }}
           />
           {/* sun */}
@@ -225,18 +215,18 @@ export const SwitchDayNight1 = ({
               left: '50%',
               top: '50%',
               transform: `translate(${-50 + switched.move * 100}%, -50%)`,
-              width: pxScale3(0.8, height),
-              height: pxScale3(0.8, height),
-              borderRadius: pxScale3(0.4, height),
+              width: pxScale(scale, 120),
+              height: pxScale(scale, 120),
+              borderRadius: pxScale(scale, 60),
               backgroundColor: `rgb(
                 ${229 - switched.move * 229}, 
                 ${195 - switched.move * 195}, 
                 ${41 - switched.move * 49})`,
               boxShadow: `
-                ${pxScale3(-1 / 50, height)} ${pxScale3(-1 / 35, height)} 
-                  ${pxScale3(1 / 35, height)} rgb(150, 150, 150) inset,
-                ${pxScale3(1 / 50, height)} ${pxScale3(1 / 35, height)} 
-                  ${pxScale3(1 / 35, height)} rgb(250, 250, 250) inset`,
+                ${pxScale(scale, -3)} ${pxScale(scale, -4)} 
+                  ${pxScale(scale, 4)} rgb(150, 150, 150) inset,
+                ${pxScale(scale, 3)} ${pxScale(scale, 4)} 
+                  ${pxScale(scale, 4)} rgb(250, 250, 250) inset`,
               transition: !switched.isMoving
                 ? transitionFunction(switched.moveDuration, [
                     'transform',
@@ -254,9 +244,9 @@ export const SwitchDayNight1 = ({
           position: 'absolute',
           left: `${switched.move * 10}%`,
           top: `${switched.move * 100}%`,
-          width: pxScale3(1, width),
-          height: pxScale3(1, height),
-          background: gradient2(width, cloudData1b, 'rgb(255,255,255)'),
+          width: pxScale(scale, 369),
+          height: pxScale(scale, 145),
+          background: gradient(scale, cloudData1, 'rgb(255,255,255)'),
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
@@ -268,9 +258,9 @@ export const SwitchDayNight1 = ({
           position: 'absolute',
           left: `${switched.move * 10}%`,
           top: `${switched.move * 100}%`,
-          width: pxScale3(1, width),
-          height: pxScale3(1, height),
-          background: gradient2(width, cloudData2b, 'rgb(200,200,200)'),
+          width: pxScale(scale, 369),
+          height: pxScale(scale, 145),
+          background: gradient(scale, cloudData2, 'rgb(200,200,200)'),
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
@@ -292,19 +282,19 @@ export const SwitchDayNight1 = ({
           zIndex: 15,
         }}
       >
-        {starDatab.map((el, i) => (
+        {starData.map((el, i) => (
           <div
             key={i}
             style={{
               position: 'absolute',
-              left: pxScale3(el[0], width),
-              top: pxScale3(el[1], height),
+              left: pxScale(scale, el[0]),
+              top: pxScale(scale, el[1]),
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <SvgStar scale={(el[2] * height) / 100} color="rgb(250,250,250)" />
+            <SvgStar scale={(el[2] * scale) / 4} color="rgb(250,250,250)" />
           </div>
         ))}
       </div>

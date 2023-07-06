@@ -13,6 +13,10 @@ export const pxScale = (scale, px) => {
   return `${(scale * px) / 4}px`;
 };
 
+export const pxScale3 = (scale, px) => {
+  return `${scale * px}px`;
+};
+
 export const pxScale2 = (scale, px) => {
   return (scale * px) / 4;
 };
@@ -22,6 +26,16 @@ export const gradient = (scale, data, color) => {
     el =>
       `radial-gradient(
           circle at ${pxScale(scale, el[0])} ${pxScale(scale, el[1])}, 
+          ${color} ${el[2]}%, transparent ${el[2]}%)`
+  );
+  return dataGradient.join(', ');
+};
+
+export const gradient2 = (scale, data, color) => {
+  const dataGradient = data.map(
+    el =>
+      `radial-gradient(
+          circle at ${pxScale3(el[0], scale)} ${pxScale3(el[1], scale)}, 
           ${color} ${el[2]}%, transparent ${el[2]}%)`
   );
   return dataGradient.join(', ');
