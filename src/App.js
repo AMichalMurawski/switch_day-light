@@ -33,7 +33,7 @@ function App() {
         mode={switches.mode}
         onClick={handleClick}
         height={145}
-        width={369}
+        width={290}
       />
       <SwitchDayNight3
         scale={switches.scale}

@@ -3,8 +3,9 @@ import { transitionFunction } from '../components/data/dimData';
 export const mainBoxStyle = ({ device, mode, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    minHeight: '100vh',
+    height: '100%',
     padding: '30px 15px',
     display: 'flex',
     flexDirection: 'column',

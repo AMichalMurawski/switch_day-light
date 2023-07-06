@@ -13,8 +13,8 @@ export const pxScale = (scale, px) => {
   return `${(scale * px) / 4}px`;
 };
 
-export const pxScale3 = (scale, px) => {
-  return `${scale * px}px`;
+export const pxScale3 = (scale, px, subfix = 'px') => {
+  return `${scale * px}${subfix}`;
 };
 
 export const pxScale2 = (scale, px) => {
@@ -31,11 +31,11 @@ export const gradient = (scale, data, color) => {
   return dataGradient.join(', ');
 };
 
-export const gradient2 = (scale, data, color) => {
+export const gradient2 = (width, height, data, color) => {
   const dataGradient = data.map(
     el =>
       `radial-gradient(
-          circle at ${pxScale3(el[0], scale)} ${pxScale3(el[1], scale)}, 
+          circle at ${pxScale3(el[0], width)} ${pxScale3(el[1], height)}, 
           ${color} ${el[2]}%, transparent ${el[2]}%)`
   );
   return dataGradient.join(', ');

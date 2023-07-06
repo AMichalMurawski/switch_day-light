@@ -1,27 +1,20 @@
 import { useState } from 'react';
 import {
-  cloudData1,
-  cloudData2,
   cloudData1b,
   cloudData2b,
   moonData1b,
   moonData2b,
-  starData,
   starDatab,
 } from './data/imageData';
 import { SvgStar } from './data/SvgStar';
 import {
   modeType,
   transitionFunction,
-  pxScale,
-  pxScale2,
   pxScale3,
-  gradient,
   gradient2,
 } from './data/dimData';
 
 export const SwitchDayNight1 = ({
-  scale = 1,
   height = 30,
   width = 76,
   mode = modeType.light,
@@ -30,7 +23,8 @@ export const SwitchDayNight1 = ({
 }) => {
   const [switched, setSwitched] = useState({
     mode: mode,
-    movePos: mode === modeType.light ? 0 : pxScale2(scale, 224),
+    movePos:
+      mode === modeType.light ? 0 : Number(pxScale3(1, width - height, '')),
     xPos: 0,
     move: 0,
     moveDuration: transitionDuration,
@@ -43,7 +37,7 @@ export const SwitchDayNight1 = ({
       mode = modeType.dark;
       next = {
         mode,
-        movePos: pxScale2(scale, 224),
+        movePos: Number(pxScale3(1, width - height, '')),
         move: 1,
         moveDuration: transitionDuration,
       };
@@ -73,7 +67,8 @@ export const SwitchDayNight1 = ({
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
     if (xPos === 0) return;
     let move =
-      (switched.movePos + (xPos - switched.xPos)) / pxScale2(scale, 224);
+      (switched.movePos + (xPos - switched.xPos)) /
+      Number(pxScale3(1, width - height, ''));
     if (move < 0) move = 0;
     if (move > 1) move = 1;
     setSwitched(prev => ({
@@ -88,12 +83,13 @@ export const SwitchDayNight1 = ({
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
     let next = {};
     let move =
-      (switched.movePos + (xPos - switched.xPos)) / pxScale2(scale, 224);
+      (switched.movePos + (xPos - switched.xPos)) /
+      Number(pxScale3(1, width - height, ''));
     if (move > 0.5) {
       mode = modeType.dark;
       next = {
         mode,
-        movePos: pxScale2(scale, 224),
+        movePos: Number(pxScale3(1, width - height, '')),
         move: 1,
         moveDuration: (1 - move) * transitionDuration,
       };
@@ -144,10 +140,10 @@ export const SwitchDayNight1 = ({
       <div
         style={{
           position: 'absolute',
-          left: pxScale3(-0.86, height),
-          transform: `translateX(${switched.move * (width - height)}px)`,
-          width: pxScale3(2.75, height),
-          height: pxScale3(2.75, height),
+          left: pxScale3(-0.88, height),
+          transform: `translateX(${pxScale3(switched.move, width - height)})`,
+          width: pxScale3(2.76, height),
+          height: pxScale3(2.76, height),
           borderRadius: '50%',
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, 'transform')
@@ -206,8 +202,18 @@ export const SwitchDayNight1 = ({
               height: pxScale3(0.8, height),
               borderRadius: pxScale3(0.4, height),
               background: `
-                  ${gradient2(height, moonData1b, 'rgb(155, 155, 155)')}, 
-                  ${gradient2(height, moonData2b, 'rgb(130, 130, 130)')}, 
+                  ${gradient2(
+                    height,
+                    height,
+                    moonData1b,
+                    'rgb(155, 155, 155)'
+                  )}, 
+                  ${gradient2(
+                    height,
+                    height,
+                    moonData2b,
+                    'rgb(130, 130, 130)'
+                  )}, 
                   radial-gradient( circle at
                     ${pxScale3(1 / 5, height)} ${pxScale3(1 / 5, height)}, 
                     rgb(200,200,200) 100%, transparent 100%)`,
@@ -256,7 +262,7 @@ export const SwitchDayNight1 = ({
           top: `${switched.move * 100}%`,
           width: pxScale3(1, width),
           height: pxScale3(1, height),
-          background: gradient2(width, cloudData1b, 'rgb(255,255,255)'),
+          background: gradient2(width, height, cloudData1b, 'rgb(255,255,255)'),
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
@@ -270,7 +276,7 @@ export const SwitchDayNight1 = ({
           top: `${switched.move * 100}%`,
           width: pxScale3(1, width),
           height: pxScale3(1, height),
-          background: gradient2(width, cloudData2b, 'rgb(200,200,200)'),
+          background: gradient2(width, height, cloudData2b, 'rgb(200,200,200)'),
           transition: !switched.isMoving
             ? transitionFunction(switched.moveDuration, ['top', 'left'])
             : null,
@@ -297,7 +303,7 @@ export const SwitchDayNight1 = ({
             key={i}
             style={{
               position: 'absolute',
-              left: pxScale3(el[0], width),
+              left: pxScale3(el[0], width - height),
               top: pxScale3(el[1], height),
               display: 'flex',
               justifyContent: 'center',
