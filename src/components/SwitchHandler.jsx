@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { modeType, pxScale3 } from './data/dimData';
 
 export const SwitchHandler = ({
-  Children,
+  Component,
   mode,
   width,
   height,
@@ -97,16 +97,14 @@ export const SwitchHandler = ({
 
   const properties = {
     ...rest,
-    mode,
     width,
     height,
-    transitionDuration,
-    onClick,
+    switched,
     handleClick,
     handleDragStart,
     handleDrag,
     handleDragEnd,
   };
 
-  return <Children props={properties} />;
+  return <Component props={properties} />;
 };

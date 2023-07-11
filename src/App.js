@@ -12,6 +12,8 @@ import {
   tableRowStyle,
   tableCellStyle,
 } from './appData/appStyles';
+import { SwitchHandler } from './components/SwitchHandler';
+import { SwitchDayNight } from './components/SwitchDayNight';
 
 function App() {
   const [switches, setSwitches] = useState({
@@ -38,6 +40,14 @@ function App() {
       <SwitchDayNight3
         scale={switches.scale}
         mode={switches.mode}
+        onClick={handleClick}
+      />
+      <SwitchHandler
+        Component={SwitchDayNight}
+        mode={switches.mode}
+        width={290}
+        height={145}
+        transitionDuration={500}
         onClick={handleClick}
       />
       <div style={optionsStyle(switches)}>

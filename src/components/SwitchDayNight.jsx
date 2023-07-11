@@ -8,9 +8,8 @@ import {
 import { SvgStar } from './data/SvgStar';
 import { transitionFunction, pxScale3, gradient2 } from './data/dimData';
 
-export const SwitchDayNight = props => {
+export const SwitchDayNight = ({ props }) => {
   const {
-    width,
     height,
     switched,
     handleClick,
@@ -18,6 +17,10 @@ export const SwitchDayNight = props => {
     handleDrag,
     handleDragEnd,
   } = props;
+  let { width } = props;
+
+  width =
+    width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
 
   return (
     <div
