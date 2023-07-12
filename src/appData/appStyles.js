@@ -1,6 +1,6 @@
 import { transitionFunction } from '../components/data/dimData';
 
-export const mainBoxStyle = ({ device, mode, duration }) => {
+export const mainBoxStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
     width: '100%',
@@ -10,37 +10,38 @@ export const mainBoxStyle = ({ device, mode, duration }) => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: mode === 'light' ? 'lightgray' : 'rgb(50, 50, 50)',
+    backgroundColor: value === 0 ? 'lightgray' : 'rgb(50, 50, 50)',
     gap: `30px`,
     transition: transitionFunction(duration, 'background-color'),
   };
   return desktop;
 };
 
-export const h2Style = ({ device, mode, duration }) => {
+export const h2Style = ({ device, value, duration }) => {
   const desktop = {
     fontSize: '40px',
-    color: mode === 'light' ? 'black' : 'white',
+    color: value === 0 ? 'black' : 'white',
     transition: transitionFunction(duration, 'color'),
   };
   return desktop;
 };
 
-export const h3Style = ({ device, mode, duration }) => {
+export const h3Style = ({ device, value, duration }) => {
   const desktop = {
     textAlign: 'center',
     fontSize: '24px',
-    color: mode === 'light' ? 'black' : 'white',
+    color: value === 0 ? 'black' : 'white',
     transition: transitionFunction(duration, 'color'),
   };
   return desktop;
 };
 
-export const optionsStyle = ({ device, mode, duration }) => {
+export const optionsStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
-    backgroundColor: mode === 'light' ? 'rgb(230, 230, 230)' : 'rgb(0, 0, 0)',
-    transition: transitionFunction(duration, 'background-color'),
+    color: value === 0 ? 'black' : 'white',
+    backgroundColor: value === 0 ? 'rgb(230, 230, 230)' : 'rgb(0, 0, 0)',
+    transition: transitionFunction(duration, ['background-color', 'color']),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -49,27 +50,30 @@ export const optionsStyle = ({ device, mode, duration }) => {
   return desktop;
 };
 
-export const tableStyle = ({ device, mode, duration }) => {
+export const tableStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
-    border: '2px solid white',
+    border: value === 0 ? '2px solid black' : '2px solid white',
+    transition: transitionFunction(duration, 'border'),
   };
   return desktop;
 };
 
-export const tableRowStyle = ({ device, mode, duration }) => {
+export const tableRowStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
-    border: '2px solid white',
+    border: value === 0 ? '2px solid black' : '2px solid white',
+    transition: transitionFunction(duration, 'border'),
   };
   return desktop;
 };
 
-export const tableCellStyle = ({ device, mode, duration }) => {
+export const tableCellStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
-    border: '2px solid white',
+    border: value === 0 ? '2px solid black' : '2px solid white',
     padding: '10px 20px',
+    transition: transitionFunction(duration, 'border'),
   };
   return desktop;
 };

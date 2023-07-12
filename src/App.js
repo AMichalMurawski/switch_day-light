@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import { SwitchDayNight1 } from './components/SwitchDayNight1';
-import { SwitchDayNight3 } from './components/SwitchDayNight3';
 // import { SwitchDayNight2 } from './components/SwitchDayNight2';
 import {
   mainBoxStyle,
@@ -17,35 +15,24 @@ import { SwitchDayNight } from './components/SwitchDayNight';
 
 function App() {
   const [switches, setSwitches] = useState({
-    mode: 'light',
+    value: 0,
     scale: 4,
     duration: 500,
     device: 'desktop',
   });
 
-  const handleClick = mode => {
-    setSwitches(previous => ({ ...previous, mode }));
+  const handleClick = value => {
+    setSwitches(previous => ({ ...previous, value }));
   };
 
   return (
     <div style={mainBoxStyle(switches)}>
       <h2 style={h2Style(switches)}>Your app switch</h2>
-      <SwitchDayNight1
-        scale={1}
-        mode={switches.mode}
-        onClick={handleClick}
-        height={145}
-        width={290}
-      />
-      <SwitchDayNight3
-        scale={switches.scale}
-        mode={switches.mode}
-        onClick={handleClick}
-      />
       <SwitchHandler
         Component={SwitchDayNight}
-        mode={switches.mode}
-        width={290}
+        value={switches.value}
+        maxValue={3}
+        width={369}
         height={145}
         transitionDuration={500}
         onClick={handleClick}

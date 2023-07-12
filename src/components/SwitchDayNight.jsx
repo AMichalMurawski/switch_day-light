@@ -7,6 +7,7 @@ import {
 } from './data/imageData';
 import { SvgStar } from './data/SvgStar';
 import { transitionFunction, pxScale3, gradient2 } from './data/dimData';
+import { useEffect } from 'react';
 
 export const SwitchDayNight = ({ props }) => {
   const {
@@ -16,11 +17,23 @@ export const SwitchDayNight = ({ props }) => {
     handleDragStart,
     handleDrag,
     handleDragEnd,
+    handleMove,
   } = props;
   let { width } = props;
 
   width =
     width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
+
+  useEffect(() => {
+    if (switched.isMoving === false) {
+      if (switched.move > 0.5) {
+        switched.move = 1;
+      } else {
+        switched.move = 0;
+      }
+      handleMove(switched.move);
+    }
+  }, [switched.isMoving]);
 
   return (
     <div
