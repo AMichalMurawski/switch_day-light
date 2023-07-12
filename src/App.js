@@ -34,6 +34,7 @@ function App() {
         maxValue={3}
         width={369}
         height={145}
+        moveType="step"
         transitionDuration={500}
         onClick={handleClick}
       />

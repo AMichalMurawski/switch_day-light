@@ -28,6 +28,7 @@ export const SwitchDayNight = ({ props }) => {
     width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
 
   useEffect(() => {
+    console.log(move);
     if (isMoving === false) {
       if (move > 0.5) {
         handleMove(1);
@@ -35,7 +36,7 @@ export const SwitchDayNight = ({ props }) => {
         handleMove(0);
       }
     }
-  }, [isMoving]);
+  }, [move]);
 
   return (
     <div

@@ -3,10 +3,11 @@ import { pxScale3 } from './data/dimData';
 
 export const SwitchHandler = ({
   Component,
-  value,
-  maxValue = 1,
   width,
   height,
+  value,
+  maxValue = 1,
+  moveType = 'revalue',
   transitionDuration,
   onClick,
   ...rest
@@ -25,22 +26,40 @@ export const SwitchHandler = ({
   const handleClick = e => {
     const { value } = switching;
 
-    let moveClick =
-      (e.clientX - e.currentTarget.offsetLeft - height / 2) / (width - height);
-    moveClick = moveClick < 0 ? 0 : moveClick > 1 ? 1 : moveClick;
+    let newValue, moveClick, actualMove;
 
-    // const value = Math.round(moveClick * maxValue);
-    const checkValue = Math.round(moveClick * maxValue);
-
-    const newValue =
-      checkValue > value ? value + 1 : checkValue < value ? value - 1 : value;
+    switch (moveType) {
+      case 'step':
+        moveClick =
+          (e.clientX - e.currentTarget.offsetLeft - height / 2) /
+          (width - height);
+        moveClick = moveClick < 0 ? 0 : moveClick > 1 ? 1 : moveClick;
+        actualMove = value / maxValue;
+        newValue =
+          moveClick > actualMove
+            ? value + 1
+            : moveClick < actualMove
+            ? value - 1
+            : value;
+        break;
+      case 'position':
+        moveClick =
+          (e.clientX - e.currentTarget.offsetLeft - height / 2) /
+          (width - height);
+        moveClick = moveClick < 0 ? 0 : moveClick > 1 ? 1 : moveClick;
+        newValue = Math.round(moveClick * maxValue);
+        break;
+      default:
+        newValue = value === 0 ? maxValue : 0;
+    }
 
     const move = newValue / maxValue;
     const next = {
       value: newValue,
       move,
       movePos: Number(pxScale3(move, width - height, '')),
-      moveDuration: transitionDuration / maxValue,
+      moveDuration:
+        transitionDuration * (Math.abs(newValue - value) / maxValue),
     };
 
     setSwitching(prev => ({ ...prev, ...next }));
