@@ -23,30 +23,28 @@ export const SwitchHandler = ({
   });
 
   const handleClick = e => {
-    console.log(
-      'click-switchPos',
-      (e.clientX - e.currentTarget.offsetLeft - height / 2) / (width - height)
-    );
-    let next = {};
-    if (switching.value === 0) {
-      value = maxValue;
-      next = {
-        value,
-        movePos: Number(pxScale3(1, width - height, '')),
-        move: 1,
-        moveDuration: transitionDuration,
-      };
-    } else {
-      value = 0;
-      next = {
-        value,
-        movePos: 0,
-        move: 0,
-        moveDuration: transitionDuration,
-      };
-    }
+    const { value } = switching;
+
+    let moveClick =
+      (e.clientX - e.currentTarget.offsetLeft - height / 2) / (width - height);
+    moveClick = moveClick < 0 ? 0 : moveClick > 1 ? 1 : moveClick;
+
+    // const value = Math.round(moveClick * maxValue);
+    const checkValue = Math.round(moveClick * maxValue);
+
+    const newValue =
+      checkValue > value ? value + 1 : checkValue < value ? value - 1 : value;
+
+    const move = newValue / maxValue;
+    const next = {
+      value: newValue,
+      move,
+      movePos: Number(pxScale3(move, width - height, '')),
+      moveDuration: transitionDuration / maxValue,
+    };
+
     setSwitching(prev => ({ ...prev, ...next }));
-    onClick(value);
+    onClick(newValue);
   };
 
   const handleDragStart = (e, screen) => {
@@ -95,14 +93,12 @@ export const SwitchHandler = ({
       moveDuration: duration * transitionDuration,
     };
     setSwitching(prev => ({ ...prev, ...next, isMoving: false }));
-    console.log('drag onClick', value);
     onClick(value);
   };
 
   const handleMove = move => {
     value = Math.round(move * maxValue);
     setSwitching(prev => ({ ...prev, value, move }));
-    console.log('move onClick', value);
     onClick(value);
   };
 
@@ -119,8 +115,6 @@ export const SwitchHandler = ({
     handleDragEnd,
     handleMove,
   };
-
-  console.log(properties.move);
 
   return <Component props={properties} />;
 };
