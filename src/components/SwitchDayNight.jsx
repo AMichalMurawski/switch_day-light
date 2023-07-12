@@ -12,28 +12,32 @@ import { useEffect } from 'react';
 export const SwitchDayNight = ({ props }) => {
   const {
     height,
-    switched,
+    move,
+    isMoving,
+    moveDuration,
     handleClick,
     handleDragStart,
     handleDrag,
     handleDragEnd,
     handleMove,
   } = props;
+
   let { width } = props;
 
   width =
     width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
 
   useEffect(() => {
-    if (switched.isMoving === false) {
-      if (switched.move > 0.5) {
-        switched.move = 1;
+    if (isMoving === false) {
+      if (move > 0.5) {
+        console.log('handleMove=1');
+        handleMove(1);
       } else {
-        switched.move = 0;
+        console.log('handleMove=2');
+        handleMove(0);
       }
-      handleMove(switched.move);
     }
-  }, [switched.isMoving]);
+  }, [isMoving]);
 
   return (
     <div
@@ -45,9 +49,9 @@ export const SwitchDayNight = ({ props }) => {
         height: pxScale3(1, height),
         borderRadius: pxScale3(1 / 2, height),
         backgroundColor: `rgb(
-          ${51 - switched.move * 55}, 
-          ${103 - switched.move * 103}, 
-          ${193 - switched.move * 159})`,
+          ${51 - move * 55}, 
+          ${103 - move * 103}, 
+          ${193 - move * 159})`,
         boxShadow: `
             0 ${pxScale3(1 / 15, height)} 
               ${pxScale3(1 / 10, height)} rgb(0, 0, 0) inset,
@@ -58,8 +62,8 @@ export const SwitchDayNight = ({ props }) => {
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        transition: !switched.isMoving
-          ? transitionFunction(switched.moveDuration, 'background-color')
+        transition: !isMoving
+          ? transitionFunction(moveDuration, 'background-color')
           : null,
         cursor: 'pointer',
       }}
@@ -70,12 +74,12 @@ export const SwitchDayNight = ({ props }) => {
         style={{
           position: 'absolute',
           left: pxScale3(-0.88, height),
-          transform: `translateX(${pxScale3(switched.move, width - height)})`,
+          transform: `translateX(${pxScale3(move, width - height)})`,
           width: pxScale3(2.76, height),
           height: pxScale3(2.76, height),
           borderRadius: '50%',
-          transition: !switched.isMoving
-            ? transitionFunction(switched.moveDuration, 'transform')
+          transition: !isMoving
+            ? transitionFunction(moveDuration, 'transform')
             : null,
           zIndex: 20,
         }}
@@ -99,9 +103,9 @@ export const SwitchDayNight = ({ props }) => {
               rgba(255, 255, 255, 0.15) 53%,
               rgba(255, 255, 255, 0.15) 65%,
               rgba(255, 255, 255, 0) 70%)`,
-            opacity: 1 - switched.move * 0.4,
-            transition: !switched.isMoving
-              ? transitionFunction(switched.moveDuration, 'opacity')
+            opacity: 1 - move * 0.4,
+            transition: !isMoving
+              ? transitionFunction(moveDuration, 'opacity')
               : null,
             zIndex: 10,
           }}
@@ -149,21 +153,21 @@ export const SwitchDayNight = ({ props }) => {
               position: 'absolute',
               left: '50%',
               top: '50%',
-              transform: `translate(${-50 + switched.move * 100}%, -50%)`,
+              transform: `translate(${-50 + move * 100}%, -50%)`,
               width: pxScale3(0.8, height),
               height: pxScale3(0.8, height),
               borderRadius: pxScale3(0.4, height),
               backgroundColor: `rgb(
-                ${229 - switched.move * 229}, 
-                ${195 - switched.move * 195}, 
-                ${41 - switched.move * 49})`,
+                ${229 - move * 229}, 
+                ${195 - move * 195}, 
+                ${41 - move * 49})`,
               boxShadow: `
                 ${pxScale3(-1 / 50, height)} ${pxScale3(-1 / 35, height)} 
                   ${pxScale3(1 / 35, height)} rgb(150, 150, 150) inset,
                 ${pxScale3(1 / 50, height)} ${pxScale3(1 / 35, height)} 
                   ${pxScale3(1 / 35, height)} rgb(250, 250, 250) inset`,
-              transition: !switched.isMoving
-                ? transitionFunction(switched.moveDuration, [
+              transition: !isMoving
+                ? transitionFunction(moveDuration, [
                     'transform',
                     'background-color',
                   ])
@@ -177,13 +181,13 @@ export const SwitchDayNight = ({ props }) => {
       <div
         style={{
           position: 'absolute',
-          left: `${switched.move * 10}%`,
-          top: `${switched.move * 100}%`,
+          left: `${move * 10}%`,
+          top: `${move * 100}%`,
           width: pxScale3(1, width),
           height: pxScale3(1, height),
           background: gradient2(width, height, cloudData1b, 'rgb(255,255,255)'),
-          transition: !switched.isMoving
-            ? transitionFunction(switched.moveDuration, ['top', 'left'])
+          transition: !isMoving
+            ? transitionFunction(moveDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
@@ -191,13 +195,13 @@ export const SwitchDayNight = ({ props }) => {
       <div
         style={{
           position: 'absolute',
-          left: `${switched.move * 10}%`,
-          top: `${switched.move * 100}%`,
+          left: `${move * 10}%`,
+          top: `${move * 100}%`,
           width: pxScale3(1, width),
           height: pxScale3(1, height),
           background: gradient2(width, height, cloudData2b, 'rgb(200,200,200)'),
-          transition: !switched.isMoving
-            ? transitionFunction(switched.moveDuration, ['top', 'left'])
+          transition: !isMoving
+            ? transitionFunction(moveDuration, ['top', 'left'])
             : null,
           zIndex: 12,
         }}
@@ -209,10 +213,10 @@ export const SwitchDayNight = ({ props }) => {
           position: 'absolute',
           width: '100%',
           height: '100%',
-          left: `${-10 + switched.move * 10}%`,
-          top: `${-100 + switched.move * 100}%`,
-          transition: !switched.isMoving
-            ? transitionFunction(switched.moveDuration, ['top', 'left'])
+          left: `${-10 + move * 10}%`,
+          top: `${-100 + move * 100}%`,
+          transition: !isMoving
+            ? transitionFunction(moveDuration, ['top', 'left'])
             : null,
           zIndex: 15,
         }}
