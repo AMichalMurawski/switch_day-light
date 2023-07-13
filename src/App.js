@@ -12,6 +12,8 @@ import {
 } from './appData/appStyles';
 import { SwitchHandler } from './components/SwitchHandler';
 import { SwitchDayNight } from './components/SwitchDayNight';
+import { SwitchBasic } from './components/SwitchBasic';
+import { SwitchDayNight2 } from './components/SwitchDayNight2';
 
 function App() {
   const [switches, setSwitches] = useState({
@@ -35,6 +37,13 @@ function App() {
         width={369}
         height={145}
         moveType="step"
+        transitionDuration={500}
+        onClick={handleClick}
+      />
+      <SwitchDayNight2
+        value={switches.value}
+        width={369}
+        height={145}
         transitionDuration={500}
         onClick={handleClick}
       />

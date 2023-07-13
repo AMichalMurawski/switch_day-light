@@ -1,73 +1,41 @@
-import {
-  cloudData1b,
-  cloudData2b,
-  moonData1b,
-  moonData2b,
-  starDatab,
-} from './data/imageData';
-import { SvgStar } from './data/SvgStar';
+import { moonData1b, moonData2b } from './data/imageData';
 import { transitionFunction, pxScale3, gradient2 } from './data/dimData';
-import { useEffect } from 'react';
 
-export const SwitchDayNight = ({ props }) => {
+export const SwitchBasic = ({ props }) => {
   const {
     height,
+    width,
     move,
     isMoving,
     moveDuration,
+    design,
     handleClick,
     handleDragStart,
     handleDrag,
     handleDragEnd,
-    handleMove,
   } = props;
 
-  let { width } = props;
-
-  width =
-    width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
-
-  useEffect(() => {
-    if (isMoving === false) {
-      if (move > 0.5) {
-        handleMove(1);
-      } else {
-        handleMove(0);
-      }
-    }
-  }, [move]);
+  const boxStyle = design(props).boxStyle;
+  const boxChildren = design(props).boxChildren;
 
   return (
     <div
       style={{
+        ...boxStyle,
         position: 'relative',
         minWidth: pxScale3(1, width),
         width: pxScale3(1, width),
         minHeight: pxScale3(1, height),
         height: pxScale3(1, height),
         borderRadius: pxScale3(1 / 2, height),
-        backgroundColor: `rgb(
-          ${51 - move * 55}, 
-          ${103 - move * 103}, 
-          ${193 - move * 159})`,
-        boxShadow: `
-            0 ${pxScale3(1 / 15, height)} 
-              ${pxScale3(1 / 10, height)} rgb(0, 0, 0) inset,
-            0 ${pxScale3(1 / 30, height)} 
-              ${pxScale3(1 / 50, height)} rgb(250, 250, 250),
-            0 ${pxScale3(1 / 35, height)} 
-              ${pxScale3(1 / 50, height)} rgb(0, 0, 0)`,
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        transition: !isMoving
-          ? transitionFunction(moveDuration, 'background-color')
-          : null,
         cursor: 'pointer',
       }}
       onClick={handleClick}
     >
-      {/* --- sun / moon --- */}
+      {/* switch */}
       <div
         style={{
           position: 'absolute',
@@ -178,68 +146,10 @@ export const SwitchDayNight = ({ props }) => {
             }}
           />
         </div>
+        {/* {--> not basic 3} */}
       </div>
 
-      {/* --- clouds --- */}
-      <div
-        style={{
-          position: 'absolute',
-          left: `${move * 10}%`,
-          top: `${move * 100}%`,
-          width: pxScale3(1, width),
-          height: pxScale3(1, height),
-          background: gradient2(width, height, cloudData1b, 'rgb(255,255,255)'),
-          transition: !isMoving
-            ? transitionFunction(moveDuration, ['top', 'left'])
-            : null,
-          zIndex: 15,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: `${move * 10}%`,
-          top: `${move * 100}%`,
-          width: pxScale3(1, width),
-          height: pxScale3(1, height),
-          background: gradient2(width, height, cloudData2b, 'rgb(200,200,200)'),
-          transition: !isMoving
-            ? transitionFunction(moveDuration, ['top', 'left'])
-            : null,
-          zIndex: 12,
-        }}
-      />
-
-      {/* --- stars --- */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          left: `${-10 + move * 10}%`,
-          top: `${-100 + move * 100}%`,
-          transition: !isMoving
-            ? transitionFunction(moveDuration, ['top', 'left'])
-            : null,
-          zIndex: 15,
-        }}
-      >
-        {starDatab.map((el, i) => (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              left: pxScale3(el[0], width - height),
-              top: pxScale3(el[1], height),
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <SvgStar scale={(el[2] * height) / 100} color="rgb(250,250,250)" />
-          </div>
-        ))}
-      </div>
+      {boxChildren()}
     </div>
   );
 };
