@@ -11,11 +11,11 @@ export const propsCheck = props => {
       case 'value':
         checkValue(key, value, 0, 'maxValue', props.maxValue);
         break;
-      case 'transitionDuration':
+      case 'duration':
         checkValue(key, value, 0, 'time [ms]', 3000);
         break;
       default:
-        console.log("don't recognize prop", key);
+        throw new Error(`don't recognize prop ${key}`);
     }
   }
 };
@@ -46,5 +46,4 @@ const checkValue = (key, value, minValue, maxKey, maxValue) => {
   isNumeric(key, value);
   notLower(key, value, minValue);
   notHigher(key, value, maxKey, maxValue);
-  console.log(key);
 };

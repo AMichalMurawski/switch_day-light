@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { pxScale3 } from './data/dimData';
+import { scale } from './utils/dimData';
 
 export const SwitchHandler = ({ Component, props }) => {
   const {
@@ -8,7 +8,7 @@ export const SwitchHandler = ({ Component, props }) => {
     value,
     maxValue = 1,
     moveType = 'revalue',
-    transitionDuration,
+    duration,
     onClick,
     design,
     ...rest
@@ -18,10 +18,10 @@ export const SwitchHandler = ({ Component, props }) => {
 
   const [switching, setSwitching] = useState({
     value,
-    movePos: Number(pxScale3(valPer(value), width - height, '')),
+    movePos: Number(scale(valPer(value), width - height, '')),
     xPos: 0,
     move: valPer(value),
-    moveDuration: transitionDuration,
+    moveDuration: duration,
     isMoving: false,
   });
 
@@ -59,9 +59,8 @@ export const SwitchHandler = ({ Component, props }) => {
     const next = {
       value: newValue,
       move,
-      movePos: Number(pxScale3(move, width - height, '')),
-      moveDuration:
-        transitionDuration * (Math.abs(newValue - value) / maxValue),
+      movePos: Number(scale(move, width - height, '')),
+      moveDuration: duration * (Math.abs(newValue - value) / maxValue),
     };
 
     setSwitching(prev => ({ ...prev, ...next }));
@@ -82,7 +81,7 @@ export const SwitchHandler = ({ Component, props }) => {
     if (xPos === 0) return;
     let move =
       (switching.movePos + (xPos - switching.xPos)) /
-      Number(pxScale3(1, width - height, ''));
+      Number(scale(1, width - height, ''));
     if (move < 0) move = 0;
     if (move > 1) move = 1;
     setSwitching(prev => ({
@@ -97,21 +96,21 @@ export const SwitchHandler = ({ Component, props }) => {
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
     let checkMove =
       (switching.movePos + (xPos - switching.xPos)) /
-      Number(pxScale3(1, width - height, ''));
+      Number(scale(1, width - height, ''));
     if (checkMove < 0) checkMove = 0;
     if (checkMove > 1) checkMove = 1;
     const checkValue = checkMove * maxValue;
     let value = Math.round(checkValue);
     const move = valPer(value);
-    const duration =
+    const scaleDuration =
       value > checkValue
         ? Math.abs(value - checkValue)
         : Math.abs(checkValue - value);
     const next = {
       value,
-      movePos: Number(pxScale3(valPer(value), width - height, '')),
+      movePos: Number(scale(valPer(value), width - height, '')),
       move,
-      moveDuration: duration * transitionDuration,
+      moveDuration: scaleDuration * duration,
     };
     setSwitching(prev => ({ ...prev, ...next, isMoving: false }));
     onClick(value);

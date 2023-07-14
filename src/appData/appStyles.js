@@ -1,4 +1,4 @@
-import { transitionFunction } from '../components/data/dimData';
+import { transition } from '../components/utils/dimData';
 
 export const mainBoxStyle = ({ device, value, duration }) => {
   const desktop = {
@@ -12,7 +12,7 @@ export const mainBoxStyle = ({ device, value, duration }) => {
     alignItems: 'center',
     backgroundColor: value === 0 ? 'lightgray' : 'rgb(50, 50, 50)',
     gap: `30px`,
-    transition: transitionFunction(duration, 'background-color'),
+    transition: transition(duration, 'background-color'),
   };
   return desktop;
 };
@@ -21,7 +21,7 @@ export const h2Style = ({ device, value, duration }) => {
   const desktop = {
     fontSize: '40px',
     color: value === 0 ? 'black' : 'white',
-    transition: transitionFunction(duration, 'color'),
+    transition: transition(duration, 'color'),
   };
   return desktop;
 };
@@ -31,7 +31,7 @@ export const h3Style = ({ device, value, duration }) => {
     textAlign: 'center',
     fontSize: '24px',
     color: value === 0 ? 'black' : 'white',
-    transition: transitionFunction(duration, 'color'),
+    transition: transition(duration, 'color'),
   };
   return desktop;
 };
@@ -41,7 +41,7 @@ export const optionsStyle = ({ device, value, duration }) => {
     boxSizing: 'border-box',
     color: value === 0 ? 'black' : 'white',
     backgroundColor: value === 0 ? 'rgb(230, 230, 230)' : 'rgb(0, 0, 0)',
-    transition: transitionFunction(duration, ['background-color', 'color']),
+    transition: transition(duration, ['background-color', 'color']),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -54,7 +54,7 @@ export const tableStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
     border: value === 0 ? '2px solid black' : '2px solid white',
-    transition: transitionFunction(duration, 'border'),
+    transition: transition(duration, 'border'),
   };
   return desktop;
 };
@@ -63,7 +63,7 @@ export const tableRowStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
     border: value === 0 ? '2px solid black' : '2px solid white',
-    transition: transitionFunction(duration, 'border'),
+    transition: transition(duration, 'border'),
   };
   return desktop;
 };
@@ -73,7 +73,7 @@ export const tableCellStyle = ({ device, value, duration }) => {
     boxSizing: 'border-box',
     border: value === 0 ? '2px solid black' : '2px solid white',
     padding: '10px 20px',
-    transition: transitionFunction(duration, 'border'),
+    transition: transition(duration, 'border'),
   };
   return desktop;
 };

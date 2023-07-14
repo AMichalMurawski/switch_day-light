@@ -1,4 +1,4 @@
-import { transitionFunction, pxScale3 } from './data/dimData';
+import { transition, scale } from './utils/dimData';
 
 export const SwitchBasic = ({ props }) => {
   const {
@@ -23,11 +23,11 @@ export const SwitchBasic = ({ props }) => {
       style={{
         ...boxStyle,
         position: 'relative',
-        minWidth: pxScale3(1, width),
-        width: pxScale3(1, width),
-        minHeight: pxScale3(1, height),
-        height: pxScale3(1, height),
-        borderRadius: pxScale3(1 / 2, height),
+        minWidth: scale(1, width),
+        width: scale(1, width),
+        minHeight: scale(1, height),
+        height: scale(1, height),
+        borderRadius: scale(1 / 2, height),
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
@@ -40,13 +40,11 @@ export const SwitchBasic = ({ props }) => {
         style={{
           position: 'absolute',
           left: '0',
-          transform: `translateX(${pxScale3(move, width - height)})`,
-          width: pxScale3(1, height),
-          height: pxScale3(1, height),
+          transform: `translateX(${scale(move, width - height)})`,
+          width: scale(1, height),
+          height: scale(1, height),
           borderRadius: '50%',
-          transition: !isMoving
-            ? transitionFunction(moveDuration, 'transform')
-            : null,
+          transition: !isMoving ? transition(moveDuration, 'transform') : null,
           zIndex: 20,
         }}
         onDragStart={e => handleDragStart(e, 'drag')}

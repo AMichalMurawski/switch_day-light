@@ -9,13 +9,16 @@ import {
   tableRowStyle,
   tableCellStyle,
 } from './appData/appStyles';
-import { SwitchDayNight } from './components/SwitchDayNight';
+import { SwitchDayNight } from './components';
 
 function App() {
   const [switches, setSwitches] = useState({
     value: 0,
-    scale: 4,
+    maxValue: 1,
+    height: 145,
+    width: 500,
     duration: 500,
+    moveType: 'revalue',
     device: 'desktop',
   });
 
@@ -26,21 +29,11 @@ function App() {
   return (
     <div style={mainBoxStyle(switches)}>
       <h2 style={h2Style(switches)}>Your app switch</h2>
-      {/* <SwitchHandler
-        Component={SwitchDayNight}
-        value={switches.value}
-        maxValue={3}
-        width={369}
-        height={145}
-        moveType="step"
-        transitionDuration={500}
-        onClick={handleClick}
-      /> */}
       <SwitchDayNight
         value={switches.value}
-        width={369}
-        height={145}
-        transitionDuration={500}
+        height={switches.height}
+        width={switches.width}
+        duration={switches.duration}
         onClick={handleClick}
       />
       <div style={optionsStyle(switches)}>
