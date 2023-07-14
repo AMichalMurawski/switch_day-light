@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { pxScale3 } from './data/dimData';
 
-export const SwitchHandler = ({
-  Component,
-  width,
-  height,
-  value,
-  maxValue = 1,
-  moveType = 'revalue',
-  transitionDuration,
-  onClick,
-  ...rest
-}) => {
+export const SwitchHandler = ({ Component, props }) => {
+  const {
+    width,
+    height,
+    value,
+    maxValue = 1,
+    moveType = 'revalue',
+    transitionDuration,
+    onClick,
+    design,
+    ...rest
+  } = props;
+
   const valPer = value => Math.round(value) / maxValue;
 
   const [switching, setSwitching] = useState({
@@ -99,7 +101,7 @@ export const SwitchHandler = ({
     if (checkMove < 0) checkMove = 0;
     if (checkMove > 1) checkMove = 1;
     const checkValue = checkMove * maxValue;
-    value = Math.round(checkValue);
+    let value = Math.round(checkValue);
     const move = valPer(value);
     const duration =
       value > checkValue
@@ -124,10 +126,11 @@ export const SwitchHandler = ({
   const properties = {
     ...rest,
     width,
-    height,
+    height: height,
     move: switching.move,
     isMoving: switching.isMoving,
     moveDuration: switching.moveDuration,
+    design,
     handleClick,
     handleDragStart,
     handleDrag,

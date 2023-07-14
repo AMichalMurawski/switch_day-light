@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-// import { SwitchDayNight2 } from './components/SwitchDayNight2';
 import {
   mainBoxStyle,
   h2Style,
@@ -10,10 +9,7 @@ import {
   tableRowStyle,
   tableCellStyle,
 } from './appData/appStyles';
-import { SwitchHandler } from './components/SwitchHandler';
 import { SwitchDayNight } from './components/SwitchDayNight';
-import { SwitchBasic } from './components/SwitchBasic';
-import { SwitchDayNight2 } from './components/SwitchDayNight2';
 
 function App() {
   const [switches, setSwitches] = useState({
@@ -30,7 +26,7 @@ function App() {
   return (
     <div style={mainBoxStyle(switches)}>
       <h2 style={h2Style(switches)}>Your app switch</h2>
-      <SwitchHandler
+      {/* <SwitchHandler
         Component={SwitchDayNight}
         value={switches.value}
         maxValue={3}
@@ -39,8 +35,8 @@ function App() {
         moveType="step"
         transitionDuration={500}
         onClick={handleClick}
-      />
-      <SwitchDayNight2
+      /> */}
+      <SwitchDayNight
         value={switches.value}
         width={369}
         height={145}
