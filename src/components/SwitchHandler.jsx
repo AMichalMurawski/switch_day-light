@@ -118,7 +118,7 @@ export const SwitchHandler = ({ Component, props }) => {
   };
 
   const handleMove = move => {
-    value = Math.round(move * maxValue);
+    const value = Math.round(move * maxValue);
     setSwitching(prev => ({ ...prev, value, move }));
     onClick(value);
   };

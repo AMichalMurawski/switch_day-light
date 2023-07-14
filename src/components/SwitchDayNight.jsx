@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { SwitchBasic } from './SwitchBasic';
 import { SwitchHandler } from './SwitchHandler';
 import { SvgStar } from './data/SvgStar';
@@ -9,6 +10,7 @@ import {
   moonData2b,
   starDatab,
 } from './data/imageData';
+import { propsCheck } from './data/propsCheck';
 
 export const SwitchDayNight = ({
   height,
@@ -17,6 +19,12 @@ export const SwitchDayNight = ({
   transitionDuration,
   onClick,
 }) => {
+  useEffect(() => {
+    propsCheck({ height, width, value, maxValue: 1, transitionDuration });
+    width =
+      width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width;
+  }, [height, width, value, transitionDuration]);
+
   const design = props => ({
     boxStyle: {
       backgroundColor: `rgb(${51 - props.move * 55}, ${
