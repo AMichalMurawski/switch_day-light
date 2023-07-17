@@ -9,7 +9,7 @@ export const SwitchHandler = ({ Component, props }) => {
     maxValue = 1,
     moveType = 'revalue',
     duration,
-    onClick,
+    onClick = () => {},
     design,
     ...rest
   } = props;

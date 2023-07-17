@@ -10,9 +10,9 @@ export const Moon = ({ props }) => {
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        width: scale(0.8, height),
-        height: scale(0.8, height),
-        borderRadius: scale(0.4, height),
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
         background: `
                 ${gradient(height, height, moonData1, 'rgb(155, 155, 155)')}, 
                 ${gradient(height, height, moonData2, 'rgb(130, 130, 130)')}, 

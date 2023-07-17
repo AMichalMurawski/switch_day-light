@@ -7,12 +7,9 @@ export const SunMoonRays = ({ props }) => {
     <div
       style={{
         position: 'absolute',
-        transform: `translate(${scale(-0.88, height)}, ${scale(
-          -0.88,
-          height
-        )})`,
-        width: scale(2.76, height),
-        height: scale(2.76, height),
+        transform: `translate(-32%, -32%)`,
+        width: '276%',
+        height: '276%',
         borderRadius: '50%',
         background: `radial-gradient(
               rgba(255, 255, 255, 0.40), 

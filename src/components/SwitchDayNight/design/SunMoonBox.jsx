@@ -12,9 +12,9 @@ export const SunMoonBox = ({ props }) => {
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        width: scale(0.8, height),
-        height: scale(0.8, height),
-        borderRadius: scale(0.4, height),
+        width: '80%',
+        height: '80%',
+        borderRadius: '50%',
         boxShadow: `${scale(1 / 45, height)} ${scale(1 / 45, height)} 
                 ${scale(1 / 30, height)} rgb(30, 30, 30)`,
         overflow: 'hidden',

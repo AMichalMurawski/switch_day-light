@@ -21,6 +21,19 @@ export const SwitchBasic = ({ props }) => {
   return (
     <div
       style={{
+        backgroundColor: `rgb(${255 - move * 255}, ${255 - move * 255}, ${
+          255 - move * 255
+        })`,
+        boxShadow: `
+        0 ${scale(1 / 15, height)} 
+            ${scale(1 / 10, height)} rgb(0, 0, 0) inset,
+        0 ${scale(1 / 30, height)} 
+            ${scale(1 / 50, height)} rgb(255, 255, 255),
+        0 ${scale(1 / 35, height)} 
+            ${scale(1 / 50, height)} rgb(0, 0, 0)`,
+        transition: !isMoving
+          ? transition(moveDuration, ['background-color', 'box-shadow'])
+          : null,
         ...boxStyle,
         position: 'relative',
         minWidth: scale(1, width),
@@ -54,7 +67,27 @@ export const SwitchBasic = ({ props }) => {
         onDragEnd={e => handleDragEnd(e, 'drag')}
         onTouchEnd={e => handleDragEnd(e, 'touch')}
       >
-        {!switchChildren ? null : switchChildren()}
+        {!switchChildren ? (
+          <div
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '80%',
+              height: '80%',
+              backgroundImage: `radial-gradient(rgb(${255 - move * 55}, ${
+                100 + move * 155
+              }, 100) 0%, rgb( ${255 - move * 255}, ${
+                0 + move * 255
+              }, 0) 100%)`,
+              borderRadius: '50%',
+              transition: transition(moveDuration, 'background-image'),
+            }}
+          ></div>
+        ) : (
+          switchChildren()
+        )}
       </div>
       {!boxChildren ? null : boxChildren()}
     </div>

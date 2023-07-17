@@ -10,9 +10,9 @@ export const Sun = ({ props }) => {
         left: '50%',
         top: '50%',
         transform: `translate(${-50 + move * 100}%, -50%)`,
-        width: scale(0.8, height),
-        height: scale(0.8, height),
-        borderRadius: scale(0.4, height),
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
         backgroundColor: `rgb(
                 ${229 - move * 229}, 
                 ${195 - move * 195}, 
