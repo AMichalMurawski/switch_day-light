@@ -21,8 +21,8 @@ export const SwitchBasic = ({ props }) => {
   return (
     <div
       style={{
-        backgroundColor: `rgb(${255 - move * 255}, ${255 - move * 255}, ${
-          255 - move * 255
+        backgroundColor: `rgb(${255 - move * 100}, ${255 - move * 100}, ${
+          255 - move * 100
         })`,
         boxShadow: `
         0 ${scale(1 / 15, height)} 
@@ -76,13 +76,20 @@ export const SwitchBasic = ({ props }) => {
               transform: 'translate(-50%, -50%)',
               width: '80%',
               height: '80%',
-              backgroundImage: `radial-gradient(rgb(${255 - move * 55}, ${
-                100 + move * 155
-              }, 100) 0%, rgb( ${255 - move * 255}, ${
+              backgroundColor: `rgb(${200 + move * 55}, ${
+                255 - move * 155
+              }, 0)`,
+              boxShadow: `0 0 ${scale(
+                0.1 * 0.8,
+                height
+              )} rgb(0, 0, 0, 0.5) inset, 0 0 ${scale(0.5 * 0.8, height)} rgb(${
                 0 + move * 255
-              }, 0) 100%)`,
+              }, ${255 - move * 255}, 100) inset`,
               borderRadius: '50%',
-              transition: transition(moveDuration, 'background-image'),
+              transition: transition(moveDuration, [
+                'background-color',
+                'box-shadow',
+              ]),
             }}
           ></div>
         ) : (
