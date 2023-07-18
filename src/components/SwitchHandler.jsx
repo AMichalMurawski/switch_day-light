@@ -3,14 +3,18 @@ import { scale } from './utils/dimData';
 
 export const SwitchHandler = ({ Component, props }) => {
   const {
-    width,
-    height,
-    value,
+    width = 100,
+    height = 200,
+    value = 0,
     maxValue = 1,
     moveType = 'revalue',
-    duration,
+    duration = 500,
     onClick = () => {},
-    design,
+    design = {
+      boxStyle: null,
+      boxChildren: null,
+      switchChildren: null,
+    },
     ...rest
   } = props;
 

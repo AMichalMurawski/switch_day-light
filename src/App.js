@@ -11,6 +11,7 @@ import {
 } from './appData/appStyles';
 import { SwitchDayNight } from './components';
 import { SwitchExample } from './components/SwitchExample';
+import { SwitchYesNo } from './components/SwitchYesNo';
 
 function App() {
   const [switches, setSwitches] = useState({
@@ -37,7 +38,7 @@ function App() {
         duration={switches.duration}
         onClick={handleClick}
       />
-      <SwitchExample
+      <SwitchYesNo
         value={switches.value}
         height={switches.height}
         width={switches.width}

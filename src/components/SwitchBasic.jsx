@@ -76,18 +76,18 @@ export const SwitchBasic = ({ props }) => {
               left: '50%',
               top: '50%',
               transform: 'translate(-50%, -50%)',
-              width: '80%',
-              height: '80%',
+              width: '75%',
+              height: '75%',
               backgroundColor: `rgb(${200 + move * 55}, ${
                 255 - move * 155
               }, 0)`,
-              boxShadow: `0 0 ${scale(0.12 * 0.8, height)} 
+              boxShadow: `0 0 ${scale(0.12 * 0.75, height)} 
                   rgb(0, 0, 0, 0.5) inset,
-                0 0 ${scale(0.5 * 0.8, height)} 
+                0 0 ${scale(0.5 * 0.75, height)} 
                   rgb(${0 + move * 255}, 
-                ${255 - move * 255}, 100) inset, 
-                0 0 ${scale(0.04 * 0.8, height)} black, 
-                0 0 ${scale(0.1 * 0.8, height)} gray`,
+                  ${255 - move * 255}, 100) inset, 
+                0 0 ${scale(0.04 * 0.75, height)} black, 
+                0 0 ${scale(0.1 * 0.75, height)} gray`,
               borderRadius: '50%',
               transition: transition(moveDuration, [
                 'background-color',
