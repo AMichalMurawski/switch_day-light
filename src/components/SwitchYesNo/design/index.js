@@ -1,9 +1,12 @@
 import { scale, transition } from '../../utils/dimData';
 import { IconCheckMark } from './IconCheckMark';
 import { IconCross } from './IconCross';
+import { SwitchBox } from './SwitchBox';
 
 export const design = props => {
-  const { move, height, isMoving, moveDuration } = props;
+  const { move, height, isMoving, moveDuration, colors } = props;
+
+  console.log('props', colors);
   return {
     boxStyle: null,
     boxChildren: () => (
@@ -12,6 +15,10 @@ export const design = props => {
         <IconCross props={props} />
       </>
     ),
-    switchChildren: null,
+    switchChildren: () => (
+      <>
+        <SwitchBox props={props} />
+      </>
+    ),
   };
 };

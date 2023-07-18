@@ -18,7 +18,7 @@ export const IconCross = ({ props }) => {
       xmlns="http://www.w3.org/2000/svg"
       width={scale(0.6, height)}
       height={scale(0.6, height)}
-      viewBox={`0 0 ${scale(0.6, height)} ${scale(0.6, height)}`}
+      viewBox={`0 0 ${scale(0.6, height, '')} ${scale(0.6, height, '')}`}
     >
       <use xlinkHref={icons + '#icon-cross'} />
     </svg>

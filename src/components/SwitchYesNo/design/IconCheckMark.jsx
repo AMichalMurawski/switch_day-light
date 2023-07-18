@@ -18,7 +18,7 @@ export const IconCheckMark = ({ props }) => {
       xmlns="http://www.w3.org/2000/svg"
       width={scale(0.7, height)}
       height={scale(0.7, height)}
-      viewBox={`0 0 ${scale(0.7, height)} ${scale(0.7, height)}`}
+      viewBox={`0 0 ${scale(0.7, height, '')} ${scale(0.7, height, '')}`}
     >
       <use xlinkHref={icons + '#icon-checkmark'} />
     </svg>

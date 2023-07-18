@@ -43,6 +43,10 @@ function App() {
         height={switches.height}
         width={switches.width}
         duration={switches.duration}
+        colors={[
+          ['0', 0, 255, 0],
+          [1, 255, 0, 0],
+        ]}
       />
       <div style={optionsStyle(switches)}>
         <div>
