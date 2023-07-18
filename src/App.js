@@ -16,8 +16,8 @@ function App() {
   const [switches, setSwitches] = useState({
     value: 0,
     maxValue: 1,
-    height: 145,
-    width: 500,
+    height: 125,
+    width: 250,
     duration: 500,
     moveType: 'revalue',
     device: 'desktop',

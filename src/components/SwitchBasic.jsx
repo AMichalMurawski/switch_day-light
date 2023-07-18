@@ -25,12 +25,14 @@ export const SwitchBasic = ({ props }) => {
           255 - move * 100
         })`,
         boxShadow: `
-        0 ${scale(1 / 15, height)} 
-            ${scale(1 / 10, height)} rgb(0, 0, 0) inset,
-        0 ${scale(1 / 30, height)} 
-            ${scale(1 / 50, height)} rgb(255, 255, 255),
-        0 ${scale(1 / 35, height)} 
-            ${scale(1 / 50, height)} rgb(0, 0, 0)`,
+        0 ${scale(0.02, height)} 
+            ${scale(0.05, height)} rgb(0, 0, 0) inset,
+        0 ${scale(0.06, height)} 
+            ${scale(0.04, height)} rgb(200, 200, 200) inset,
+        0 ${scale(0.03, height)} 
+            ${scale(0.02, height)} rgb(255, 255, 255),
+        0 ${scale(0.03, height)} 
+            ${scale(0.02, height)} rgb(0, 0, 0)`,
         transition: !isMoving
           ? transition(moveDuration, ['background-color', 'box-shadow'])
           : null,
@@ -79,12 +81,13 @@ export const SwitchBasic = ({ props }) => {
               backgroundColor: `rgb(${200 + move * 55}, ${
                 255 - move * 155
               }, 0)`,
-              boxShadow: `0 0 ${scale(
-                0.1 * 0.8,
-                height
-              )} rgb(0, 0, 0, 0.5) inset, 0 0 ${scale(0.5 * 0.8, height)} rgb(${
-                0 + move * 255
-              }, ${255 - move * 255}, 100) inset`,
+              boxShadow: `0 0 ${scale(0.12 * 0.8, height)} 
+                  rgb(0, 0, 0, 0.5) inset,
+                0 0 ${scale(0.5 * 0.8, height)} 
+                  rgb(${0 + move * 255}, 
+                ${255 - move * 255}, 100) inset, 
+                0 0 ${scale(0.04 * 0.8, height)} black, 
+                0 0 ${scale(0.1 * 0.8, height)} gray`,
               borderRadius: '50%',
               transition: transition(moveDuration, [
                 'background-color',
