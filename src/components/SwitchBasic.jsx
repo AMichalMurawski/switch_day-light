@@ -27,8 +27,8 @@ export const SwitchBasic = ({ props }) => {
         boxShadow: `
         0 ${scale(0.02, height)} 
             ${scale(0.05, height)} rgb(0, 0, 0) inset,
-        0 ${scale(0.06, height)} 
-            ${scale(0.04, height)} rgb(200, 200, 200) inset,
+        0 ${scale(0.03, height)} 
+            ${scale(0.04, height)} rgb(50, 50, 50) inset,
         0 ${scale(0.03, height)} 
             ${scale(0.02, height)} rgb(255, 255, 255),
         0 ${scale(0.03, height)} 

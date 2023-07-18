@@ -4,82 +4,100 @@ import { SwitchHandler } from '../SwitchHandler';
 import { SwitchBasic } from '../SwitchBasic';
 import { design } from './design';
 
+const checkColors = (colors, defaultColors) => {
+  if (!colors) {
+    return defaultColors;
+  }
+
+  let isColorStart = false;
+  let isColorEnd = false;
+
+  if (colors.length !== 2) {
+    throw new Error(
+      'in colors property Array must be two Arrays with first value 0 and second value 1'
+    );
+  }
+
+  const colors2 = colors
+    .map(val => {
+      if (!Array.isArray(val)) {
+        throw new Error(
+          'the structure of the color property must be as follows:' +
+            '\n' +
+            '[[value: number, redColor: number, greenColor: number, blueColor: number], ... ]' +
+            '\n' +
+            'or for using boxShadow:' +
+            '\n' +
+            '[[value: number, redColor: number, greenColor: number, blueColor : number, redColorBoxShadow: number, greenColorBoxShadow: number, blueColorBoxShadow: number], ... ]'
+        );
+      }
+      return val.map(num => {
+        if (isNaN(num)) {
+          throw new Error('values in colors must be numbers types');
+        }
+        if (Number(num) === 0) isColorStart = true;
+        if (Number(num) === 1) isColorEnd = true;
+        return Number(num);
+      });
+    })
+    .sort((a, b) => a[0] - b[0]);
+
+  if (isColorStart === false || isColorEnd === false) {
+    throw new Error(
+      'in colors property Array must be two Arrays with first value 0 and second value 1'
+    );
+  }
+
+  return colors2;
+};
+
 export const SwitchYesNo = ({
   height,
   width,
   value,
-  maxValue = 1,
   duration,
-  colors,
+  switchColors,
+  backgroundColors,
   onClick,
 }) => {
-  const [newColors, setNewColors] = useState([]);
+  const [newSwitchColors, setNewSwitchColors] = useState([
+    [0, 0, 200, 0],
+    [1, 200, 0, 0],
+  ]);
+  const [newBackgroundColors, setNewBackgroundColors] = useState([
+    [0, 0, 100, 0],
+    [1, 100, 0, 0],
+  ]);
 
   useEffect(() => {
-    propsCheck({ height, width, value, maxValue, duration });
-  }, [height, width, value, maxValue, duration]);
+    propsCheck({ height, width, value, maxValue: 1, duration });
+  }, [height, width, value, duration]);
 
   useEffect(() => {
-    console.log('1', colors);
-    if (!colors) {
-      colors = [
-        [0, 0, 200, 0],
-        [1, 200, 0, 0],
-      ];
-      return;
-    }
-    let isColorStart = false;
-    let isColorEnd = false;
-    console.log('colors', colors);
-    const colors2 = colors
-      .map(val => {
-        if (!Array.isArray(val)) {
-          throw new Error(
-            'the structure of the color property must be as follows:' +
-              '\n' +
-              '[[value: number, redColorSwitch: number, greenColorSwitch: number, blueColorSwitch: number], ... ]' +
-              '\n' +
-              'or for using boxShadow:' +
-              '\n' +
-              '[[value: number, redColorSwitch: number, greenColorSwitch: number, blueColorSwitch : number, redColorBoxShadow: number, greenColorBoxShadow: number, blueColorBoxShadow: number], ... ]'
-          );
-        }
-        return val.map(num => {
-          if (isNaN(num)) {
-            throw new Error('value in switch must be number type');
-          }
-          if (Number(num) === 0) isColorStart = true;
-          if (Number(num) === maxValue) isColorEnd = true;
-          return Number(num);
-        });
-      })
-      .sort((a, b) => a[0] - b[0]);
+    const colors = checkColors(switchColors, [
+      [0, 0, 200, 0],
+      [1, 200, 0, 0],
+    ]);
+    setNewSwitchColors(colors);
+  }, [switchColors]);
 
-    console.log(colors2);
-    if (
-      isColorStart === false ||
-      isColorEnd === false ||
-      colors2.length !== 2
-    ) {
-      throw new Error(
-        'in colors Array must be two Arrays with first value 0 and 1'
-      );
-    }
-
-    for (let i = 0; i < colors2.length; i++) {}
-    setNewColors(colors2);
-  }, [colors]);
-
-  colors = newColors.length > 0 ? newColors : colors;
+  useEffect(() => {
+    const colors = checkColors(backgroundColors, [
+      [0, 0, 100, 0],
+      [1, 100, 0, 0],
+    ]);
+    setNewBackgroundColors(colors);
+  }, [backgroundColors]);
 
   const properties = {
     width,
     height,
     value,
-    maxValue,
+    maxValue: 1,
     duration,
     design: design,
-    colors,
+    switchColors: newSwitchColors,
+    backgroundColors: newBackgroundColors,
     onClick,
   };
 
