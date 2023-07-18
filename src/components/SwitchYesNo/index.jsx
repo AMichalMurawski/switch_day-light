@@ -73,6 +73,8 @@ export const SwitchYesNo = ({
     propsCheck({ height, width, value, maxValue: 1, duration });
   }, [height, width, value, duration]);
 
+  width = width < 2 * height ? 2 * height : width;
+
   useEffect(() => {
     const colors = checkColors(switchColors, [
       [0, 0, 200, 0],
