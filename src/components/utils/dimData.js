@@ -4,8 +4,8 @@ export const transition = (duration, properties) => {
   return properties.map(prop => `${prop} ${duration}ms ease-out`);
 };
 
-export const scale = (scale, px, subfix = 'px') => {
-  return `${scale * px}${subfix}`;
+export const scale = (scale, value, subfix = 'px') => {
+  return `${scale * value}${subfix}`;
 };
 
 export const gradient = (width, height, data, color) => {

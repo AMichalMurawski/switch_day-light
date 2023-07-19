@@ -54,6 +54,7 @@ const checkColors = (colors, defaultColors) => {
 export const SwitchYesNo = ({
   height,
   width,
+  switchRadius,
   value,
   duration,
   switchColors,
@@ -96,6 +97,7 @@ export const SwitchYesNo = ({
   const properties = {
     width,
     height,
+    switchRadius,
     value,
     maxValue: 1,
     duration,

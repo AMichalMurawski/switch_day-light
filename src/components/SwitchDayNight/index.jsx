@@ -13,6 +13,7 @@ export const SwitchDayNight = ({ height, width, value, duration, onClick }) => {
     width:
       width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width,
     height: height,
+    switchRadius: 0.8,
     value,
     maxValue: 1,
     duration,

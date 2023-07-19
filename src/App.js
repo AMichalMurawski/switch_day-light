@@ -10,7 +10,6 @@ import {
   tableCellStyle,
 } from './appData/appStyles';
 import { SwitchDayNight } from './components';
-import { SwitchExample } from './components/SwitchExample';
 import { SwitchYesNo } from './components/SwitchYesNo';
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
     value: 0,
     maxValue: 1,
     height: 125,
-    width: 300,
+    width: 250,
     duration: 500,
     moveType: 'revalue',
     device: 'desktop',

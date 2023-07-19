@@ -4,6 +4,7 @@ export const SwitchBasic = ({ props }) => {
   const {
     height,
     width,
+    switchRadius,
     move,
     isMoving,
     moveDuration,
@@ -76,13 +77,13 @@ export const SwitchBasic = ({ props }) => {
               left: '50%',
               top: '50%',
               transform: 'translate(-50%, -50%)',
-              width: '75%',
-              height: '75%',
+              width: `${switchRadius * 100}%`,
+              height: `${switchRadius * 100}%`,
               backgroundColor: `rgb(${0 + move * 255}, ${255 - move * 255}, 0)`,
-              boxShadow: `0 0 ${scale(0.12 * 0.75, height)} 
+              boxShadow: `0 0 ${scale(switchRadius * 0.12, height)} 
                   rgb(0, 0, 0, 0.5) inset,
-                0 0 ${scale(0.04 * 0.75, height)} black, 
-                0 0 ${scale(0.1 * 0.75, height)} gray`,
+                0 0 ${scale(switchRadius * 0.04, height)} black, 
+                0 0 ${scale(switchRadius * 0.01, height)} gray`,
               borderRadius: '50%',
               transition: transition(moveDuration, [
                 'background-color',

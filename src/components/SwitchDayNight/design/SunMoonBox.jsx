@@ -3,7 +3,7 @@ import { Moon } from './Moon';
 import { Sun } from './Sun';
 
 export const SunMoonBox = ({ props }) => {
-  const { height } = props;
+  const { height, switchRadius } = props;
 
   return (
     <div
@@ -12,11 +12,13 @@ export const SunMoonBox = ({ props }) => {
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)',
-        width: '80%',
-        height: '80%',
+        width: `${switchRadius * 100}%`,
+        height: `${switchRadius * 100}%`,
         borderRadius: '50%',
-        boxShadow: `${scale(1 / 45, height)} ${scale(1 / 45, height)} 
-                ${scale(1 / 30, height)} rgb(30, 30, 30)`,
+        boxShadow: `${scale(switchRadius * 0.02, height)} 
+          ${scale(switchRadius * 0.02, height)} 
+          ${scale(switchRadius * 0.04, height)} 
+          rgb(30, 30, 30)`,
         overflow: 'hidden',
         zIndex: 11,
       }}

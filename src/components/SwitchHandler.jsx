@@ -5,6 +5,7 @@ export const SwitchHandler = ({ Component, props }) => {
   const {
     width = 100,
     height = 200,
+    switchRadius = 0.75,
     value = 0,
     maxValue = 1,
     moveType = 'revalue',
@@ -130,6 +131,7 @@ export const SwitchHandler = ({ Component, props }) => {
     ...rest,
     width,
     height: height,
+    switchRadius,
     move: switching.move,
     isMoving: switching.isMoving,
     moveDuration: switching.moveDuration,

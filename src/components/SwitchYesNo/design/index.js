@@ -4,7 +4,6 @@ import { SwitchBox } from './SwitchBox';
 
 export const design = props => {
   const { backgroundColors, move, iconYes, iconNo } = props;
-  console.log(backgroundColors);
 
   return {
     boxStyle: {

@@ -14,7 +14,6 @@ const switchOptions = switchType => {
   switch (switchType) {
     case 'day-night':
       return switchDayNight;
-      break;
     default:
       return [];
   }

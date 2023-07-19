@@ -7,6 +7,7 @@ import { design } from './design';
 export const SwitchExample = ({
   height,
   width,
+  switchRadius,
   value,
   maxValue = 1,
   duration,
@@ -19,6 +20,7 @@ export const SwitchExample = ({
   const properties = {
     width,
     height,
+    switchRadius,
     value,
     maxValue,
     duration,
