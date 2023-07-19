@@ -10,7 +10,6 @@ export const SwitchExample = ({
   value,
   maxValue = 1,
   duration,
-  colors,
   onClick,
 }) => {
   useEffect(() => {

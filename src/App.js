@@ -44,9 +44,14 @@ function App() {
         width={switches.width}
         duration={switches.duration}
         switchColors={[
-          [0, 120, 150, 0],
-          [1, 255, 100, 200],
+          [0, 160, 215, 110],
+          [1, 255, 130, 110],
         ]}
+        backgroundColors={[
+          [0, 110, 165, 60],
+          [1, 205, 80, 60],
+        ]}
+        onClick={handleClick}
       />
       <div style={optionsStyle(switches)}>
         <div>

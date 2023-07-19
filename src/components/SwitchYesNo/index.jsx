@@ -58,6 +58,8 @@ export const SwitchYesNo = ({
   duration,
   switchColors,
   backgroundColors,
+  iconYes,
+  iconNo,
   onClick,
 }) => {
   const [newSwitchColors, setNewSwitchColors] = useState([
@@ -65,8 +67,8 @@ export const SwitchYesNo = ({
     [1, 200, 0, 0],
   ]);
   const [newBackgroundColors, setNewBackgroundColors] = useState([
-    [0, 0, 100, 0],
-    [1, 100, 0, 0],
+    [0, 0, 250, 0],
+    [1, 250, 0, 0],
   ]);
 
   useEffect(() => {
@@ -77,16 +79,16 @@ export const SwitchYesNo = ({
 
   useEffect(() => {
     const colors = checkColors(switchColors, [
-      [0, 0, 200, 0],
-      [1, 200, 0, 0],
+      [0, 0, 255, 0],
+      [1, 255, 0, 0],
     ]);
     setNewSwitchColors(colors);
   }, [switchColors]);
 
   useEffect(() => {
     const colors = checkColors(backgroundColors, [
-      [0, 0, 100, 0],
-      [1, 100, 0, 0],
+      [0, 100, 250, 100],
+      [1, 250, 100, 100],
     ]);
     setNewBackgroundColors(colors);
   }, [backgroundColors]);
@@ -100,6 +102,8 @@ export const SwitchYesNo = ({
     design: design,
     switchColors: newSwitchColors,
     backgroundColors: newBackgroundColors,
+    iconYes,
+    iconNo,
     onClick,
   };
 

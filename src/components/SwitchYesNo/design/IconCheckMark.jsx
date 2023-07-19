@@ -2,7 +2,7 @@ import icons from '../../../images/icons.svg';
 import { scale, transition } from '../../utils/dimData';
 
 export const IconCheckMark = ({ props }) => {
-  const { height, move, moveDuration, switchColors } = props;
+  const { height, move, moveDuration, isMoving, switchColors } = props;
 
   return (
     <svg
@@ -12,8 +12,10 @@ export const IconCheckMark = ({ props }) => {
         right: scale(0.5, height),
         transform: 'translate(50%, -50%)',
         fill: `rgb(${switchColors[0][1]}, ${switchColors[0][2]}, ${switchColors[0][3]})`,
+        stroke: 'black',
+        strokeWidth: scale(0.001, height),
         opacity: `${1 - move}`,
-        transition: transition(moveDuration, 'opacity'),
+        transition: !isMoving ? transition(moveDuration, 'opacity') : null,
       }}
       xmlns="http://www.w3.org/2000/svg"
       width={scale(0.7, height)}

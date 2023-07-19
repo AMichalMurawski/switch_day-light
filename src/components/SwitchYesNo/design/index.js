@@ -3,7 +3,7 @@ import { IconCross } from './IconCross';
 import { SwitchBox } from './SwitchBox';
 
 export const design = props => {
-  const { backgroundColors, move } = props;
+  const { backgroundColors, move, iconYes, iconNo } = props;
   console.log(backgroundColors);
 
   return {

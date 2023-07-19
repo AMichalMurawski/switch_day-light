@@ -1,7 +1,7 @@
 import { scale, transition } from '../../utils/dimData';
 
 export const SwitchBox = ({ props }) => {
-  const { move, height, moveDuration, switchColors } = props;
+  const { move, height, moveDuration, isMoving, switchColors } = props;
 
   return (
     <div
@@ -30,10 +30,9 @@ export const SwitchBox = ({ props }) => {
                 0 0 ${scale(0.04 * 0.75, height)} black, 
                 0 0 ${scale(0.1 * 0.75, height)} gray`,
         borderRadius: '50%',
-        transition: transition(moveDuration, [
-          'background-color',
-          'box-shadow',
-        ]),
+        transition: !isMoving
+          ? transition(moveDuration, ['background-color', 'box-shadow'])
+          : null,
       }}
     />
   );
