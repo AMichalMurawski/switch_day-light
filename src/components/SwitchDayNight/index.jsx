@@ -4,7 +4,14 @@ import { SwitchHandler } from '../SwitchHandler';
 import { propsCheck } from '../utils/propsCheck';
 import { design } from './design';
 
-export const SwitchDayNight = ({ height, width, value, duration, onClick }) => {
+export const SwitchDayNight = ({
+  height,
+  width,
+  value,
+  duration,
+  draggable,
+  onClick,
+}) => {
   useEffect(() => {
     propsCheck({ height, width, value, maxValue: 1, duration });
   }, [height, width, value, duration]);
@@ -17,6 +24,7 @@ export const SwitchDayNight = ({ height, width, value, duration, onClick }) => {
     value,
     maxValue: 1,
     duration,
+    draggable,
     onClick,
     design: design,
   };

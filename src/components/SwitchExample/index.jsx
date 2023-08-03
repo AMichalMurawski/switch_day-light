@@ -11,6 +11,7 @@ export const SwitchExample = ({
   value,
   maxValue = 1,
   duration,
+  draggable,
   onClick,
 }) => {
   useEffect(() => {
@@ -24,6 +25,7 @@ export const SwitchExample = ({
     value,
     maxValue,
     duration,
+    draggable,
     design,
     onClick,
   };

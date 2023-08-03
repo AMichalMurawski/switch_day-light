@@ -35,6 +35,7 @@ function App() {
         height={switches.height}
         width={switches.width}
         duration={switches.duration}
+        draggable={false}
         onClick={handleClick}
       />
       <SwitchYesNo
@@ -42,6 +43,7 @@ function App() {
         height={switches.height}
         width={switches.width}
         duration={switches.duration}
+        draggable={true}
         switchColors={[
           [0, 160, 215, 110],
           [1, 255, 130, 110],

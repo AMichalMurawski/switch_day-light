@@ -9,6 +9,7 @@ export const SwitchHandler = ({ Component, props }) => {
     value = 0,
     maxValue = 1,
     moveType = 'revalue',
+    draggable = false,
     duration = 500,
     onClick = () => {},
     design = {
@@ -73,6 +74,7 @@ export const SwitchHandler = ({ Component, props }) => {
   };
 
   const handleDragStart = (e, screen) => {
+    if (draggable === false) return;
     let xPos = 0;
     if (screen === 'drag') xPos = e.clientX;
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
@@ -80,6 +82,7 @@ export const SwitchHandler = ({ Component, props }) => {
   };
 
   const handleDrag = (e, screen) => {
+    if (draggable === false) return;
     let xPos = null;
     if (screen === 'drag') xPos = e.clientX;
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
@@ -96,6 +99,7 @@ export const SwitchHandler = ({ Component, props }) => {
   };
 
   const handleDragEnd = (e, screen) => {
+    if (draggable === false) return;
     let xPos = 0;
     if (screen === 'drag') xPos = e.clientX;
     if (screen === 'touch') xPos = e.changedTouches[0].screenX;
