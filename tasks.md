@@ -1,5 +1,8 @@
-TO DO:
+1. TO DO:
 
 - change the cursor during movement
 - add switchRadius to checkProp
-- add prop "grabbable" to handler
+
+2. SunMoonRays.jsx:
+
+- change ray's radius to compatible with switch's width

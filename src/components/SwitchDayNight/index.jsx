@@ -16,7 +16,7 @@ export const SwitchDayNight = ({
     propsCheck({ height, width, value, maxValue: 1, duration });
   }, [height, width, value, duration]);
 
-  const properties = {
+  const settings = {
     width:
       width < 2 * height ? 2 * height : width > 4 * height ? 4 * height : width,
     height: height,
@@ -29,5 +29,5 @@ export const SwitchDayNight = ({
     design: design,
   };
 
-  return <SwitchHandler Component={SwitchBasic} props={properties} />;
+  return <SwitchHandler Component={SwitchBasic} settings={settings} />;
 };

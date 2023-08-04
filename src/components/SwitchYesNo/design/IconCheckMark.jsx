@@ -1,9 +1,9 @@
 import icons from '../../../images/icons.svg';
 import { scale, transition } from '../../utils/dimData';
 
-export const IconCheckMark = ({ props }) => {
+export const IconCheckMark = props => {
   const { height, switchRadius, move, moveDuration, isMoving, switchColors } =
-    props;
+    props.settings;
 
   return (
     <div

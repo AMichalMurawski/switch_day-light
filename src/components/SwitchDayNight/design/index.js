@@ -4,9 +4,11 @@ import { Clouds2 } from './Clouds2';
 import { SunMoonRays } from './SunMoonRays';
 import { SunMoonBox } from './SunMoonBox';
 import { scale, transition } from '../../utils/dimData';
+import { Moon } from './Moon';
+import { Sun } from './Sun';
 
-export const design = props => {
-  const { move, isMoving, height, moveDuration } = props;
+export const design = settings => {
+  const { move, isMoving, height, moveDuration } = settings;
   return {
     boxStyle: {
       backgroundColor: `rgb(${51 - move * 55}, ${103 - move * 103}, ${
@@ -25,15 +27,18 @@ export const design = props => {
     },
     boxChildren: () => (
       <>
-        <Clouds1 props={props} />
-        <Clouds2 props={props} />
-        <Stars props={props} />
+        <Clouds1 settings={settings} />
+        <Clouds2 settings={settings} />
+        <Stars settings={settings} />
       </>
     ),
     switchChildren: () => (
       <>
-        <SunMoonBox props={props} />
-        <SunMoonRays props={props} />
+        <SunMoonBox settings={settings}>
+          <Moon settings={settings} />
+          <Sun settings={settings} />
+        </SunMoonBox>
+        <SunMoonRays settings={settings} />
       </>
     ),
   };

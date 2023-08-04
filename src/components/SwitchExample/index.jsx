@@ -30,5 +30,5 @@ export const SwitchExample = ({
     onClick,
   };
 
-  return <SwitchHandler Component={SwitchBasic} props={properties} />;
+  return <SwitchHandler Component={SwitchBasic} settings={properties} />;
 };

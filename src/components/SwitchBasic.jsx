@@ -1,6 +1,6 @@
 import { transition, scale } from './utils/dimData';
 
-export const SwitchBasic = ({ props }) => {
+export const SwitchBasic = props => {
   const {
     height,
     width,
@@ -13,11 +13,11 @@ export const SwitchBasic = ({ props }) => {
     handleDragStart,
     handleDrag,
     handleDragEnd,
-  } = props;
+  } = props.settings;
 
-  const boxStyle = design(props).boxStyle;
-  const boxChildren = design(props).boxChildren;
-  const switchChildren = design(props).switchChildren;
+  const boxStyle = design(props.settings).boxStyle;
+  const boxChildren = design(props.settings).boxChildren;
+  const switchChildren = design(props.settings).switchChildren;
 
   return (
     <div

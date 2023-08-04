@@ -1,9 +1,9 @@
 import icons from '../../../images/icons.svg';
 import { scale, transition } from '../../utils/dimData';
 
-export const IconCross = ({ props }) => {
+export const IconCross = props => {
   const { height, switchRadius, move, moveDuration, isMoving, switchColors } =
-    props;
+    props.settings;
 
   return (
     <svg

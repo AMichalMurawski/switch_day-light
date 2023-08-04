@@ -95,7 +95,7 @@ export const SwitchYesNo = ({
     setNewBackgroundColors(colors);
   }, [backgroundColors]);
 
-  const properties = {
+  const settings = {
     width,
     height,
     switchRadius,
@@ -111,5 +111,5 @@ export const SwitchYesNo = ({
     onClick,
   };
 
-  return <SwitchHandler Component={SwitchBasic} props={properties} />;
+  return <SwitchHandler Component={SwitchBasic} settings={settings} />;
 };

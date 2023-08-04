@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { scale } from './utils/dimData';
 
-export const SwitchHandler = ({ Component, props }) => {
+export const SwitchHandler = props => {
+  const { Component, settings } = props;
   const {
     width = 100,
     height = 200,
@@ -18,7 +19,7 @@ export const SwitchHandler = ({ Component, props }) => {
       switchChildren: null,
     },
     ...rest
-  } = props;
+  } = settings;
 
   const valPer = value => Math.round(value) / maxValue;
 
@@ -147,5 +148,5 @@ export const SwitchHandler = ({ Component, props }) => {
     handleMove,
   };
 
-  return <Component props={properties} />;
+  return <Component settings={properties} />;
 };

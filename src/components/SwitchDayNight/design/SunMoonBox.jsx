@@ -1,9 +1,7 @@
 import { scale } from '../../utils/dimData';
-import { Moon } from './Moon';
-import { Sun } from './Sun';
 
-export const SunMoonBox = ({ props }) => {
-  const { height, switchRadius } = props;
+export const SunMoonBox = props => {
+  const { height, switchRadius } = props.settings;
 
   return (
     <div
@@ -23,8 +21,7 @@ export const SunMoonBox = ({ props }) => {
         zIndex: 11,
       }}
     >
-      <Moon props={props} />
-      <Sun props={props} />
+      {props.children}
     </div>
   );
 };

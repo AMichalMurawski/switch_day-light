@@ -1,8 +1,8 @@
 import { gradient, scale, transition } from '../../utils/dimData';
 import { cloudData1 } from './imageData';
 
-export const Clouds1 = ({ props }) => {
-  const { move, width, height, isMoving, moveDuration } = props;
+export const Clouds1 = props => {
+  const { move, width, height, isMoving, moveDuration } = props.settings;
 
   return (
     <div

@@ -1,8 +1,8 @@
 import { scale, transition } from '../../utils/dimData';
 
-export const SwitchBox = ({ props }) => {
+export const SwitchBox = props => {
   const { move, height, switchRadius, moveDuration, isMoving, switchColors } =
-    props;
+    props.settings;
 
   return (
     <div

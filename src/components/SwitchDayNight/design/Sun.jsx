@@ -1,7 +1,7 @@
 import { scale, transition } from '../../utils/dimData';
 
-export const Sun = ({ props }) => {
-  const { height, switchRadius, move, moveDuration, isMoving } = props;
+export const Sun = props => {
+  const { height, switchRadius, move, moveDuration, isMoving } = props.settings;
 
   return (
     <div

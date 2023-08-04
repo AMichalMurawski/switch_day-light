@@ -1,8 +1,8 @@
 import { gradient, scale } from '../../utils/dimData';
 import { moonData1, moonData2 } from './imageData';
 
-export const Moon = ({ props }) => {
-  const { height, switchRadius } = props;
+export const Moon = props => {
+  const { height, switchRadius } = props.settings;
   return (
     <div
       style={{

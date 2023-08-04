@@ -2,8 +2,8 @@ import { IconCheckMark } from './IconCheckMark';
 import { IconCross } from './IconCross';
 import { SwitchBox } from './SwitchBox';
 
-export const design = props => {
-  const { backgroundColors, move, iconYes, iconNo } = props;
+export const design = settings => {
+  const { backgroundColors, move, iconYes, iconNo } = settings;
 
   return {
     boxStyle: {
@@ -23,13 +23,13 @@ export const design = props => {
     },
     boxChildren: () => (
       <>
-        <IconCheckMark props={props} />
-        <IconCross props={props} />
+        <IconCheckMark settings={settings} />
+        <IconCross settings={settings} />
       </>
     ),
     switchChildren: () => (
       <>
-        <SwitchBox props={props} />
+        <SwitchBox settings={settings} />
       </>
     ),
   };

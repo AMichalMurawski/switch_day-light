@@ -2,8 +2,8 @@ import { scale, transition } from '../../utils/dimData';
 import { SvgStar } from './SvgStar';
 import { starData } from './imageData';
 
-export const Stars = ({ props }) => {
-  const { move, isMoving, moveDuration, height, width } = props;
+export const Stars = props => {
+  const { move, isMoving, moveDuration, height, width } = props.settings;
 
   return (
     <div
