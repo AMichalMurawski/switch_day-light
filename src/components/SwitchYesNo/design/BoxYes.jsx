@@ -18,6 +18,8 @@ export const BoxYes = props => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-    ></div>
+    >
+      {props.children}
+    </div>
   );
 };

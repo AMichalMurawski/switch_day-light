@@ -1,10 +1,12 @@
+import { BoxNo } from './BoxNo';
+import { BoxYes } from './BoxYes';
 import { IconCheckMark } from './IconCheckMark';
 import { IconCross } from './IconCross';
 import { SwitchBox } from './SwitchBox';
 
 export const design = settings => {
-  const { backgroundColors, move, iconYes, iconNo } = settings;
-
+  const { backgroundColors, move, IconYes, IconNo } = settings;
+  console.log(IconYes);
   return {
     boxStyle: {
       backgroundColor: `rgb(
@@ -23,8 +25,24 @@ export const design = settings => {
     },
     boxChildren: () => (
       <>
-        <IconCheckMark settings={settings} />
-        <IconCross settings={settings} />
+        <BoxYes settings={settings}>
+          {!IconYes ? (
+            <IconCheckMark settings={settings} />
+          ) : IconYes.type === IconCheckMark.type ? (
+            <IconYes />
+          ) : (
+            IconYes
+          )}
+        </BoxYes>
+        <BoxNo settings={settings}>
+          {!IconNo ? (
+            <IconCross settings={settings} />
+          ) : IconNo.type === IconCross.type ? (
+            <IconNo />
+          ) : (
+            IconNo
+          )}
+        </BoxNo>
       </>
     ),
     switchChildren: () => (

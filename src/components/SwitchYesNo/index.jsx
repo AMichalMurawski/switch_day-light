@@ -60,8 +60,8 @@ export const SwitchYesNo = ({
   draggable,
   switchColors,
   backgroundColors,
-  iconYes,
-  iconNo,
+  IconYes,
+  IconNo,
   onClick,
 }) => {
   const [newSwitchColors, setNewSwitchColors] = useState([
@@ -106,8 +106,8 @@ export const SwitchYesNo = ({
     design: design,
     switchColors: newSwitchColors,
     backgroundColors: newBackgroundColors,
-    iconYes,
-    iconNo,
+    IconYes,
+    IconNo,
     onClick,
   };
 

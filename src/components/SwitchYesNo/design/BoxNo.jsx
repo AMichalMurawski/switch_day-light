@@ -11,13 +11,15 @@ export const BoxNo = props => {
         left: scale(0.5, height),
         width: scale(switchRadius * 0.95, height),
         height: scale(switchRadius * 0.95, height),
-        transform: 'translate(50%, -50%)',
+        transform: 'translate(-50%, -50%)',
         opacity: `${move}`,
         transition: !isMoving ? transition(moveDuration, 'opacity') : null,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
       }}
-    ></div>
+    >
+      {props.children}
+    </div>
   );
 };
