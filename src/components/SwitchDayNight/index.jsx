@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { SwitchBasic } from '../SwitchBasic';
 import { SwitchHandler } from '../SwitchHandler';
-import { propsCheck } from '../utils/propsCheck';
+import { settingsCheck } from '../utils/settingsCheck';
 import { design } from './design';
 
 export const SwitchDayNight = ({
@@ -13,7 +13,7 @@ export const SwitchDayNight = ({
   onClick,
 }) => {
   useEffect(() => {
-    propsCheck({ height, width, value, maxValue: 1, duration });
+    settingsCheck({ height, width, value, maxValue: 1, duration });
   }, [height, width, value, duration]);
 
   const settings = {

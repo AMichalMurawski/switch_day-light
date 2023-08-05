@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { scale } from './utils/dimData';
+import { settingsCheck } from './utils/settingsCheck';
 
 export const SwitchHandler = props => {
   const { Component, settings } = props;
@@ -20,6 +21,10 @@ export const SwitchHandler = props => {
     },
     ...rest
   } = settings;
+
+  useEffect(() => {
+    settingsCheck({ switchRadius });
+  }, [switchRadius]);
 
   const valPer = value => Math.round(value) / maxValue;
 

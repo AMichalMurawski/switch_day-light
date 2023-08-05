@@ -2,7 +2,7 @@ import { transition } from '../../utils/dimData';
 
 export const SunMoonRays = props => {
   const { width, height, move, isMoving, moveDuration } = props.settings;
-  const radius = 90 * (width / height);
+  const radius = 130 * Math.sqrt(width / height);
 
   return (
     <div

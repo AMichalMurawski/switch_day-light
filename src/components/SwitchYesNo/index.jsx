@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { propsCheck } from '../utils/propsCheck';
+import { settingsCheck } from '../utils/settingsCheck';
 import { SwitchHandler } from '../SwitchHandler';
 import { SwitchBasic } from '../SwitchBasic';
 import { design } from './design';
@@ -74,7 +74,7 @@ export const SwitchYesNo = ({
   ]);
 
   useEffect(() => {
-    propsCheck({ height, width, value, maxValue: 1, duration });
+    settingsCheck({ height, width, value, maxValue: 1, duration });
   }, [height, width, value, duration]);
 
   width = width < 2 * height ? 2 * height : width;

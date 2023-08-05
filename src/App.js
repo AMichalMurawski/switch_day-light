@@ -17,7 +17,7 @@ function App() {
     value: 0,
     maxValue: 1,
     height: 100,
-    width: 200,
+    width: 300,
     duration: 500,
     moveType: 'revalue',
     device: 'desktop',

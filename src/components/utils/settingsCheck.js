@@ -1,4 +1,4 @@
-export const propsCheck = props => {
+export const settingsCheck = props => {
   for (const [key, value] of Object.entries(props)) {
     switch (key) {
       case 'height':
@@ -13,6 +13,9 @@ export const propsCheck = props => {
         break;
       case 'duration':
         checkValue(key, value, 0, 'time [ms]', 3000);
+        break;
+      case 'switchRadius':
+        checkValue(key, value, 0, ' ', 1);
         break;
       default:
         throw new Error(`don't recognize prop ${key}`);
