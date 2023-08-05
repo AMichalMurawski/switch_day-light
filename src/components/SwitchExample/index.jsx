@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { propsCheck } from '../utils/propsCheck';
 import { SwitchHandler } from '../SwitchHandler';
 import { SwitchBasic } from '../SwitchBasic';
 import { design } from './design';
@@ -14,10 +12,6 @@ export const SwitchExample = ({
   draggable,
   onClick,
 }) => {
-  useEffect(() => {
-    propsCheck({ height, width, value, maxValue, duration });
-  }, [height, width, value, maxValue, duration]);
-
   const properties = {
     width,
     height,

@@ -11,6 +11,7 @@ import {
 } from './appData/appStyles';
 import { SwitchDayNight } from './components';
 import { SwitchYesNo } from './components/SwitchYesNo';
+import { SwitchCustom } from './components/SwitchCustom';
 
 function App() {
   const [switches, setSwitches] = useState({
@@ -54,6 +55,7 @@ function App() {
         ]}
         onClick={handleClick}
       />
+      <SwitchCustom />
       <div style={optionsStyle(switches)}>
         <div>
           <h3 style={h3Style(switches)}>Global options</h3>

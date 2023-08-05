@@ -74,10 +74,8 @@ export const SwitchYesNo = ({
   ]);
 
   useEffect(() => {
-    settingsCheck({ height, width, value, maxValue: 1, duration });
-  }, [height, width, value, duration]);
-
-  width = width < 2 * height ? 2 * height : width;
+    settingsCheck({ width });
+  }, [width]);
 
   useEffect(() => {
     const colors = checkColors(switchColors, [
@@ -96,7 +94,7 @@ export const SwitchYesNo = ({
   }, [backgroundColors]);
 
   const settings = {
-    width,
+    width: width < 2 * height ? 2 * height : width,
     height,
     switchRadius,
     value,

@@ -13,8 +13,8 @@ export const SwitchDayNight = ({
   onClick,
 }) => {
   useEffect(() => {
-    settingsCheck({ height, width, value, maxValue: 1, duration });
-  }, [height, width, value, duration]);
+    settingsCheck({ width });
+  }, [width]);
 
   const settings = {
     width:

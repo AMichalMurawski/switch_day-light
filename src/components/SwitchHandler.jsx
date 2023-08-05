@@ -5,8 +5,8 @@ import { settingsCheck } from './utils/settingsCheck';
 export const SwitchHandler = props => {
   const { Component, settings } = props;
   const {
-    width = 100,
-    height = 200,
+    height = 30,
+    width = 60,
     switchRadius = 0.75,
     value = 0,
     maxValue = 1,
@@ -23,8 +23,15 @@ export const SwitchHandler = props => {
   } = settings;
 
   useEffect(() => {
-    settingsCheck({ switchRadius });
-  }, [switchRadius]);
+    settingsCheck({
+      height,
+      width,
+      value,
+      maxValue,
+      duration,
+      switchRadius,
+    });
+  }, [height, width, value, maxValue, duration, switchRadius]);
 
   const valPer = value => Math.round(value) / maxValue;
 
