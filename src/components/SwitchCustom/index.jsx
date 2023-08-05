@@ -10,17 +10,23 @@ export const SwitchCustom = ({
   maxValue,
   duration,
   draggable,
+  boxStyle,
+  BoxChildren,
+  SwitchChildren,
   onClick,
 }) => {
   const properties = {
-    width,
     height,
+    width,
     switchRadius,
     value,
     maxValue,
     duration,
     draggable,
-    design,
+    design: design,
+    boxStyle,
+    BoxChildren,
+    SwitchChildren,
     onClick,
   };
 

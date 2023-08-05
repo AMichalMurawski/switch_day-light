@@ -2,7 +2,6 @@ export const settingsCheck = settings => {
   for (const [key, value] of Object.entries(settings)) {
     switch (key) {
       case 'height':
-        console.log(settings.height);
         checkValue(key, value, 0);
         break;
       case 'width':

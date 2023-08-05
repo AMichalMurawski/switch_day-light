@@ -6,7 +6,6 @@ import { SwitchBox } from './SwitchBox';
 
 export const design = settings => {
   const { backgroundColors, move, IconYes, IconNo } = settings;
-  console.log(IconYes);
   return {
     boxStyle: {
       backgroundColor: `rgb(
