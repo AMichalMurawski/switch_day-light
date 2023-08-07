@@ -2,3 +2,56 @@
 
 - change the cursor during movement
 - add switchRadius to settingsCheck
+
+2. Options:
+   - global:
+     - height,
+     - width,
+     - switchRadius,
+     - value,
+     - maxValue,
+     - duration,
+     - draggable,
+     - onClick
+   - SwitchDayNight:
+     - active:
+       - height,
+       - width: >= 2 x height and <= 4 x height,
+       - value,
+       - duration,
+       - draggable,
+       - onClick
+     - nonactive:
+       - switchRadius: 0.8,
+       - maxValue: 1
+   - SwitchYesNo:
+     - active:
+       - height,
+       - width: >= 2 x height,
+       - switchRadius,
+       - value,
+       - duration,
+       - draggable,
+       - onClick
+     - nonactive:
+       - maxValue: 1
+     - unique:
+       - switchColors,
+       - backgroundColors,
+       - IconYes,
+       - IconNo,
+   - SwitchCustom:
+     - active:
+       - height,
+       - width,
+       - switchRadius,
+       - value,
+       - maxValue,
+       - duration,
+       - draggable,
+       - onClick
+     - nonactive:
+     - unique:
+       - boxStyle,
+       - BoxChildren,
+       - SwitchChildren,
