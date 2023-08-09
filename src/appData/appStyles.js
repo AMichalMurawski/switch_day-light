@@ -1,18 +1,90 @@
 import { transition } from '../components/utils/dimData';
 
+export const page = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    minWith: '100vw',
+    width: '100%',
+    minHeight: '100vh',
+    height: '100%',
+    padding: '0',
+    margin: '0 auto',
+    backgroundColor: value === 0 ? 'lightgray' : 'rgb(50, 50, 50)',
+    transition: transition(duration, 'background-color'),
+  };
+  return desktop;
+};
+
+export const headerBox = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%',
+    padding: '0',
+    margin: '0 auto',
+    backgroundColor: 'gray',
+  };
+  return desktop;
+};
+
+export const headerWrapper = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%',
+    maxWidth: '1200px',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '30px 15px',
+    margin: '0 auto',
+  };
+  return desktop;
+};
+
 export const mainBoxStyle = ({ device, value, duration }) => {
   const desktop = {
     boxSizing: 'border-box',
     width: '100%',
-    minHeight: '100vh',
     height: '100%',
+    margin: '0 auto',
+  };
+  return desktop;
+};
+
+export const mainWrapper = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    width: '100%',
+    minWidth: '340px',
+    maxWidth: '1200px',
+    height: '100%',
+    margin: '0 auto',
     padding: '30px 15px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: value === 0 ? 'lightgray' : 'rgb(50, 50, 50)',
     gap: `30px`,
-    transition: transition(duration, 'background-color'),
+    alignItems: 'center',
+  };
+  return desktop;
+};
+
+export const switchBox = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: `30px`,
+  };
+  return desktop;
+};
+
+export const h1Style = ({ device, value, duration }) => {
+  const desktop = {
+    fontSize: '60px',
+    color: 'black',
   };
   return desktop;
 };
@@ -32,6 +104,19 @@ export const h3Style = ({ device, value, duration }) => {
     fontSize: '24px',
     color: value === 0 ? 'black' : 'white',
     transition: transition(duration, 'color'),
+  };
+  return desktop;
+};
+
+export const selectSwitch = ({ device, value, duration }) => {
+  const desktop = {
+    boxSizing: 'border-box',
+    width: '100%',
+    padding: '0 0 60px',
+    display: 'flex',
+    flexDirection: 'row',
+    gap: '10px',
+    justifyContent: 'flex-end',
   };
   return desktop;
 };

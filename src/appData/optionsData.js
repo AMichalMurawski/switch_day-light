@@ -3,7 +3,7 @@ const globalOptions = {
     exist: true,
     editable: true,
     name: 'height',
-    default: 30,
+    default: '30',
     unit: 'px',
     description: 'Switch height property. Min value 0.',
   },
@@ -11,7 +11,7 @@ const globalOptions = {
     exist: true,
     editable: true,
     name: 'width',
-    default: 60,
+    default: '60',
     unit: 'px',
     description: "Switch width property. Min value '2 x height.'",
   },
@@ -19,7 +19,7 @@ const globalOptions = {
     exist: true,
     editable: false,
     name: 'switchRadius',
-    default: 0.6,
+    default: '0.6',
     unit: '',
     description:
       "Switch's button property. Value 0-1 with decimal values, where 1 is equal to the 'height'.",
@@ -28,7 +28,7 @@ const globalOptions = {
     exist: true,
     editable: true,
     name: 'value',
-    default: 0,
+    default: '0',
     unit: '',
     description:
       "Button property. Value 0-1, where 0 is left position and 'maxValue' is right position.",
@@ -37,7 +37,7 @@ const globalOptions = {
     exist: true,
     editable: false,
     name: 'maxValue',
-    default: 1,
+    default: '1',
     unit: '',
     description:
       "Max value for property 'value'. Editable only in SwitchCustom.",
@@ -46,7 +46,7 @@ const globalOptions = {
     exist: true,
     editable: true,
     name: 'duration',
-    default: 300,
+    default: '300',
     unit: 'ms',
     description: "Time for transition's duration property. Max value 5000.",
   },
@@ -72,7 +72,7 @@ const globalOptions = {
     exist: false,
     editable: false,
     name: 'switchColors',
-    default: '[]',
+    default: '[ [0, 0, 200, 0], [1, 200, 0, 0], ]',
     unit: 'Array',
     description: 'Button colors for each button positions.',
   },
@@ -80,7 +80,7 @@ const globalOptions = {
     exist: false,
     editable: false,
     name: 'backgroundColors',
-    default: '[]',
+    default: '[ [0, 0, 250, 0], [1, 250, 0, 0], ]',
     unit: 'Array',
     description:
       "Switch's wrapper background colors for each button positions.",
@@ -105,7 +105,7 @@ const globalOptions = {
     exist: false,
     editable: false,
     name: 'boxStyle',
-    default: '{}',
+    default: 'boxDefaultStyles',
     unit: 'object',
     description: 'Properties for switch styles.',
   },
@@ -183,17 +183,14 @@ const switchCustom = {
   },
 };
 
-const switchOptions = switchType => {
+export const switchOptions = switchType => {
   switch (switchType) {
     case 'dayNight':
       return switchDayNight;
-      break;
     case 'yesNo':
       return switchYesNo;
-      break;
     case 'custom':
       return switchCustom;
-      break;
     default:
       return {};
   }
