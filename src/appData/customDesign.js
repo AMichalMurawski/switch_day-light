@@ -1,4 +1,4 @@
-import { transition } from '../components/utils/dimData';
+import { transition } from '../components/switches/utils/dimData';
 
 export const boxStyle = settings => ({
   backgroundColor: `rgb(${255 - settings.move * 255}, 

@@ -1,7 +1,22 @@
 1. TO DO:
 
-- change the cursor during movement
 - add switchRadius to settingsCheck
+- view switch compatible with selector "select switch"
+- example board for switch day-night (some text, 2 backgrounds, ect)
+- example board for switch yes-no (example form)
+- example board for switch custom (example form + dark mode)
+- properties form for all switches:
+  - create table
+  - create row + data for row
+  - create editable values + change state with edit
+- footer with information about github project / github author
+- add media for website
+- add mobile / tablet media for:
+  - header
+  - footer
+  - boards
+  - properties form
+- change the cursor during movement
 
 2. Options:
    - global:
