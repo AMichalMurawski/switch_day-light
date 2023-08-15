@@ -51,7 +51,7 @@ const checkColors = (colors, defaultColors) => {
   return colors2;
 };
 
-export const SwitchYesNo = ({
+export const SwitchBoolean = ({
   height,
   width,
   switchRadius,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+export const Heading = styled.header`
   background-color: gray;
 
   .wrapper {

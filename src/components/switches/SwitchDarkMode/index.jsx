@@ -4,7 +4,7 @@ import { SwitchHandler } from '../SwitchHandler';
 import { settingsCheck } from '../utils/settingsCheck';
 import { design } from './design';
 
-export const SwitchDayNight = ({
+export const SwitchDarkMode = ({
   height,
   width,
   value,

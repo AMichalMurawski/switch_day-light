@@ -46,6 +46,10 @@ export const Page = styled.div`
     margin: 0 auto;
   }
 
+  .font-size {
+    font-size: ${props => props.$size};
+  }
+
   .text-center {
     text-align: center;
   }

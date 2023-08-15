@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import { SwitchDayNight } from './components/switches';
-import { SwitchYesNo } from './components/switches/SwitchYesNo';
-import { SwitchCustom } from './components/switches/SwitchCustom';
-import { SwitchChildren, boxStyle } from './appData/customDesign';
-import { Header } from './components/website/Header';
-import { Page } from './components/website/Page';
-import { Main } from './components/website/Main';
-import { SwitchBoard, SwitchBox } from './components/website/Switch';
-import { PropertiesTable } from './components/website/PropertiesTable';
+import { Page } from './components/website/PageStyle';
+import { PropertiesTable } from './components/website/PropertiesTableStyle';
+import { Header, Main, SwitchBox, SwitchSelector } from './components/website';
+import { SwitchBoard } from './components/website/SwitchBoard';
 
 const initialSwitchProperties = {
   height: 30,
@@ -32,88 +27,56 @@ const initialSwitchProperties = {
 function App() {
   const [switches, setSwitches] = useState(initialSwitchProperties);
   const [device, setDevice] = useState('desktop');
-  const [darkMode, setDarkMode] = useState(0);
+  const [darkMode, setDarkMode] = useState(switches.value);
+  const [switchType, setSwitchType] = useState('dark-mode');
 
-  const handleClick = value => {
-    setDarkMode(value);
+  const handleSwitchChange = value => {
+    console.log('app', value);
+    setSwitchType(value);
   };
+
+  const darkModeClick = value => {
+    setDarkMode(value);
+    setSwitches(prev => ({ ...prev, value }));
+  };
+
+  const booleanClick = () => {};
+
+  const customClick = () => {};
 
   return (
     <Page className="full-size">
-      <Header className="full-size">
-        <div className="wrapper full-size">
-          <h1>M.A.D.M. Switch</h1>
-        </div>
-      </Header>
-      <Main className="full-size">
-        <div className="wrapper full-size">
-          <h2>Try app switch</h2>
-          <SwitchBox>
-            <form className="switch-selector" name="selectSwitch">
-              <label className="selector-label" for="selectSW">
-                Select switch:
-              </label>
-              <select className="selector-select" id="selectSW" name="selectSW">
-                <option value="day-night" selected>
-                  Dark mode switch
-                </option>
-                <option value="yes-no">Boolean switch</option>
-                <option value="custom">Custom switch</option>
-              </select>
-            </form>
-            <SwitchBoard>
-              <SwitchDayNight
-                height={switches.height}
-                width={switches.width}
-                value={switches.value}
-                duration={switches.duration}
-                draggable={switches.draggable}
-                onClick={handleClick}
-              />
-              <SwitchYesNo
-                height={switches.height}
-                width={switches.width}
-                switchRadius={switches.switchRadius}
-                value={switches.value}
-                duration={switches.duration}
-                draggable={switches.draggable}
-                switchColors={switches.switchColors}
-                backgroundColors={switches.backgroundColors}
-                IconYes={switches.IconYes}
-                IconNo={switches.IconNo}
-                onClick={switches.onClick}
-              />
-              <SwitchCustom
-                height={switches.height}
-                width={switches.width}
-                switchRadius={switches.switchRadius}
-                value={switches.value}
-                maxValue={switches.maxValue}
-                duration={switches.duration}
-                draggable={switches.draggable}
-                boxStyle={switches.boxStyle}
-                BoxChildren={switches.BoxChildren}
-                SwitchChildren={switches.SwitchChildren}
-                onClick={switches.onClick}
-              />
-            </SwitchBoard>
-          </SwitchBox>
+      <Header />
+      <Main>
+        <h2>Try app switch</h2>
+        <SwitchBox>
+          <SwitchSelector
+            switchType={switchType}
+            onChange={handleSwitchChange}
+          />
+          <SwitchBoard
+            switches={switches}
+            switchType={switchType}
+            darkModeClick={darkModeClick}
+            booleanClick={booleanClick}
+            customClick={customClick}
+          />
+        </SwitchBox>
 
-          <PropertiesTable className="full-size">
-            <h3 className="text-center">Properties</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Properties</th>
-                  <th>Value</th>
-                  <th>Default</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </PropertiesTable>
-        </div>
+        <PropertiesTable className="full-size">
+          <h3 className="text-center">Properties</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Properties</th>
+                <th>Value</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </PropertiesTable>
       </Main>
     </Page>
   );
