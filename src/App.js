@@ -8,10 +8,10 @@ import { SwitchBoard } from './components/website/SwitchBoard';
 const initialSwitchProperties = {
   height: 30,
   width: 75,
-  switchRadius: 0.6,
+  switchRadius: 0.75,
   value: 0,
   maxValue: 1,
-  duration: 300,
+  duration: 500,
   draggable: false,
   onClick: () => {},
   switchColors: null,

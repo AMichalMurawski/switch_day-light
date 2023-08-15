@@ -6,7 +6,7 @@ export const SwitchHandler = props => {
   const { Component, settings } = props;
   const {
     height = 30,
-    width = 60,
+    width = 75,
     switchRadius = 0.75,
     value = 0,
     maxValue = 1,
