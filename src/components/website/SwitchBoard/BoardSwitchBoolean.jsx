@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { SwitchBoolean } from '../../../switches';
-import { Board, SwitchWrapper, TextBox } from './BoardStyle';
+import { SwitchBoolean } from '../../switches';
+import { BoardBoolean } from './styles/BoardStyles';
+import { SwitchTextWrapper } from './styles/WrapperStyles';
+import { TextBoxBoolean } from './styles/TextStyles';
 
 export const BoardSwitchBoolean = ({ props }) => {
   const [state, setState] = useState({
@@ -17,13 +19,16 @@ export const BoardSwitchBoolean = ({ props }) => {
   };
 
   return (
-    <Board>
-      <SwitchWrapper>
-        <TextBox $value={state.props1.value} $duration={state.props1.duration}>
+    <BoardBoolean>
+      <SwitchTextWrapper>
+        <TextBoxBoolean
+          $value={state.props1.value}
+          $duration={state.props1.duration}
+        >
           Similique error modi fugit ducimus odio impedit, mollitia earum porro
           minima officiis iusto laborum voluptas eius iure est eum, molestias
           veritatis laboriosam?
-        </TextBox>
+        </TextBoxBoolean>
         <SwitchBoolean
           height={state.props1.height}
           width={state.props1.width}
@@ -37,12 +42,15 @@ export const BoardSwitchBoolean = ({ props }) => {
           IconNo={state.props1.IconNo}
           onClick={value => handleClick(1, value)}
         />
-      </SwitchWrapper>
-      <SwitchWrapper>
-        <TextBox $value={state.props2.value} $duration={state.props2.duration}>
+      </SwitchTextWrapper>
+      <SwitchTextWrapper>
+        <TextBoxBoolean
+          $value={state.props2.value}
+          $duration={state.props2.duration}
+        >
           Reiciendis non magnam exercitationem rerum autem quod minima eos
           dolorem saepe temporibus?
-        </TextBox>
+        </TextBoxBoolean>
         <SwitchBoolean
           height={state.props2.height}
           width={state.props2.width}
@@ -56,11 +64,14 @@ export const BoardSwitchBoolean = ({ props }) => {
           IconNo={state.props2.IconNo}
           onClick={value => handleClick(2, value)}
         />
-      </SwitchWrapper>
-      <SwitchWrapper>
-        <TextBox $value={state.props3.value} $duration={state.props3.duration}>
+      </SwitchTextWrapper>
+      <SwitchTextWrapper>
+        <TextBoxBoolean
+          $value={state.props3.value}
+          $duration={state.props3.duration}
+        >
           Pariatur quis odit, animi ea impedit quidem?
-        </TextBox>
+        </TextBoxBoolean>
         <SwitchBoolean
           height={state.props3.height}
           width={state.props3.width}
@@ -74,7 +85,7 @@ export const BoardSwitchBoolean = ({ props }) => {
           IconNo={state.props3.IconNo}
           onClick={value => handleClick(3, value)}
         />
-      </SwitchWrapper>
-    </Board>
+      </SwitchTextWrapper>
+    </BoardBoolean>
   );
 };

@@ -1,5 +1,5 @@
-import { SwitchCustom } from '../../../switches';
-import { Board } from './BoardStyle';
+import { SwitchCustom } from '../../switches';
+import { Board } from './BoardSwitchCustom/BoardStyle';
 
 export const BoardSwitchCustom = ({ props }) => {
   return (

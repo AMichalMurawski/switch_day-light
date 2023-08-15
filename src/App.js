@@ -31,7 +31,6 @@ function App() {
   const [switchType, setSwitchType] = useState('dark-mode');
 
   const handleSwitchChange = value => {
-    console.log('app', value);
     setSwitchType(value);
   };
 

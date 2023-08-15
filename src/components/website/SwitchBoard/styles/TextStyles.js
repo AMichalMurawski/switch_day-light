@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const transitionF = (duration, props) => {
+const transitionF = ({ duration, props }) => {
   if (typeof props === 'string') {
     return `${props} ${duration}ms ease-out`;
   }
@@ -17,23 +17,21 @@ const transitionF = (duration, props) => {
   }
 };
 
-export const TextBox = styled.div.attrs(props => ({
+export const TextBox = styled.p.attrs(props => ({
+  $weight: props.$fontWeight,
+}))`
+  width: 100%;
+  font-size: 18px;
+  font-weight: ${props => props.$weight};
+`;
+
+export const TextBoxBoolean = styled(TextBox).attrs(props => ({
   $value: props.$value,
   $duration: props.$duration,
 }))`
-  width: 100%;
   color: ${props => (props.$value === 1 ? 'rgb(210, 210, 210)' : null)};
   background-color: ${props =>
     props.$value === 1 ? 'rgb(100, 100, 100)' : null};
   transition: ${props =>
     transitionF(props.$duration, ['color', 'background-color'])};
-`;
-
-export const SwitchWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  width: 100%;
 `;
